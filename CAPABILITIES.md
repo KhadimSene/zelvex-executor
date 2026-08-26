@@ -1,8 +1,10 @@
-# Zelvex Lua Injector — Capabilities & Technical Reference
+# Zelvex Executor — Capabilities & Technical Reference
 
 ## What Is This?
 
-A Lua code injector that executes arbitrary Lua code inside Mini World Creata's game process by resolving the game's internal Lua VM and calling `luaL_loadstring` + `lua_pcall` through remote shellcode injection.
+A real **Lua 5.1 executor platform** for Mini World: CREATA. Not a remote-thread `luaL_loadstring` stub — a full VM compiled into a 32-bit DLL that lives inside `MiniGameApp.exe`, plus a Qt6 GUI that streams scripts to it via shared memory and draws an in-game Dear ImGui overlay through the game's own DirectX swapchain.
+
+> **Quick idea:** `Zelvex.exe` (64-bit, Qt GUI + editor) ←→ shared memory (`ZelvexLuaSharedMem`) ←→ `lua_dll.dll` (32-bit, Lua VM + game natives + ImGui) injected into the game — all scripts run *inside* the game process, so they can call the engine directly.
 
 ---
 
@@ -10,40 +12,38 @@ A Lua code injector that executes arbitrary Lua code inside Mini World Creata's 
 
 ```
 1. ATTACH
-   Zelvex opens a handle to MiniGameApp.exe (the game process)
+   Zelvex finds MiniGameApp.exe, opens a handle.
+   (Auto-attach polls every 500ms; manual ATTACH in the GUI)
 
-2. RESOLVE LUA VM
-   ├─ Call SandboxCoreLuaDirector::GetCoreLuaDirector()  [static singleton]
-   ├─ Call SandboxCoreLuaDirector::getLuaState()         [member function]
-   └─ Returns: lua_State* (the game's Lua VM pointer)
-   (Addresses resolved via PE export table parsing of libSandboxEngine.dll)
+2. INJECT
+   Zelvex drops lua_dll.dll into the game via CreateRemoteThread(LoadLibrary).
+   DLL entry:
+     - creates shared memory "ZelvexLuaSharedMem"
+       { command, done, error, cancel, outLen, code[16KB], output[32KB] }
+     - starts a worker thread (CommandLoop) that watches `command`
 
-3. RESOLVE LUA API
-   ├─ Resolve luaL_loadstring  from liblua.dll exports
-   └─ Resolve lua_pcall        from liblua.dll exports
+3. RUN A SCRIPT
+   GUI writes code[16KB], sets command=1, starts a 100ms poll timer.
+   Worker picks it up (compare-exchange to 0), runs ExecuteLuaScript:
+     - persistent lua_State* g_L (survives between runs)
+     - instruction-count hook (100k) aborts tight loops on STOP
+     - wait(sec) sleeps in 25ms slices, pumping gui callbacks + checking cancel
+     - native.* / Player:/Actor:/Item: etc. dispatch via RunNativeCmd()
+     - print() and auto-echo [cmd] lines stream to output[32KB] via outLen
 
-4. INJECT & EXECUTE
-   ├─ Allocate memory in target process (VirtualAllocEx)
-   ├─ Write Lua code string as UTF-8 to remote memory
-   ├─ Write assembled x86 shellcode to remote memory:
-   │   pushad
-   │   push <code_ptr>          ; const char* code
-   │   push <lua_State>         ; lua_State* L
-   │   call luaL_loadstring     ; luaL_loadstring(L, code) → 0 on success
-   │   test eax,eax
-   │   jne fail                 ; skip pcall if load failed
-   │   push 0                   ; errfunc = 0 (no error handler)
-   │   push -1                  ; nresults = LUA_MULTRET (1 return value)
-   │   push 0                   ; nargs = 0 (no arguments)
-   │   push <lua_State>         ; lua_State* L
-   │   call lua_pcall           ; lua_pcall(L, 0, -1, 0)
-   │   fail:
-   │   popad
-   │   ret
-   ├─ CreateRemoteThread to execute the shellcode
-   ├─ WaitForSingleObject (5 second timeout)
-   └─ Free remote memory
+4. OVERLAY (on demand)
+   Script calls gui.start() -> Overlay::Start():
+     - finds the game's largest visible window
+     - creates a dummy D3D11 swapchain to read the shared Present vtable
+     - swaps vtable[8] (Present) — copy-on-write makes it process-local
+     - hooks WndProc on that window; swaps back on gui.reset() / Stop()
+
+5. STOP / CANCEL
+   GUI STOP button sets shared->cancel=1.
+   PollCancel() mirrors it to g_cancelRequested; hook + LuaWait slices abort within 25ms.
 ```
+
+**No `liblua.dll` is used from the game.** Lua 5.1.5 is compiled into the DLL (`dll/lua-5.1.5/`, ~30 .c files, ~100KB). All 21k+ engine exports are resolved live at attach.
 
 ---
 
@@ -51,140 +51,139 @@ A Lua code injector that executes arbitrary Lua code inside Mini World Creata's 
 
 ### What It CAN Do
 
-**Execute any Lua code** that the game's client-side VM supports. This includes:
+#### Scripting — Full Lua 5.1
 
-#### Client-Side Game API Access
-- **CustomUI** — Full UI manipulation (create/destroy/update UI elements)
-  - `CustomUI:open()` / `CustomUI:close()` — Open/close UI windows
-  - `CustomUI:setText()` / `CustomUI:setImage()` — Modify UI elements
-  - `CustomUI:openUrl()` — Open URLs in the game's browser
-  - 46+ CustomUI functions available
-- **Player** — Read local player state
-  - Position, health, hunger, stamina
-  - Inventory access
-- **World** — World manipulation
-  - Block read/write (local)
-  - Weather, time
-- **RemoteFunction:FireServer()** — Send RPCs to the host
-  - Request item spawning
-  - Trigger server-side actions
-  - (Server may validate/reject)
-- **RemoteEvent:FireServer()** — Fire events to the host
-- **ModuleScript** — Load shared modules
+Functions, closures, tables, metatables, `string`/`math`/`table` libs, `loadstring`, `pcall`, coroutines. 16 KB code / 32 KB output buffers (streaming, not just on finish). Persistent VM — globals survive between runs; `native.reset()` wipes it.
 
-#### UI Generation
-- Create dynamic in-game UI via CustomUI API
-- Build custom HUDs, menus, overlays
-- React to game events and update UI in real-time
+#### Game Natives (~70)
 
-#### Game State Reading
-- Read player stats (health, hunger, stamina)
-- Read player position and inventory
-- Read world state (blocks, entities)
-- Monitor game events
+| Area | Examples | How |
+|------|----------|-----|
+| **Player** | `Player:getPos()->x,y,z`, `setHealth(9999)`, `getHunger`, `setWalkSpeed`, `setJump`, `setScale`, `revive`, `addStar`, `fly`, `sprint`, `noclip`, `noDrop`, `jumpFly`, `slowFall`, `teleportTo(uid,dx,dy,dz)`, `bringPlayer`, `gmChangeSkin` | Direct calls into `ClientPlayer`/`MpPlayerControl` via resolved exports + AOB patches |
+| **Players** | `Players.list()->{uid,x,y,z,team}`, `count()`, `nearest()` | Live scan `[[libMiniBaseGame+0xB36C]+78]+68`, 40 slots, `uid@+0 pos@+14/18/1C team@+B0`, filtered `uid!=0, team 1..64, |coord|<30M` |
+| **World** | `World:setTime/setHours/getTime/setTimespeed`, `roomOwner/roomMap` | `WorldManager` exports |
+| **Chat** | `Chat:send("hi")`, `sendSystemMsg` | `libiworld` chat func (`+0x185060`) + `[[MiniBase+0xB36C]+78]+4` |
+| **Actor** | `Actor:killAura(0/1/2)`, `aimbot(on,range)`, `mountAll`, `mineAll`, `killAllHost` | Byte patches / caves + aimbot thread scanning the player table |
+| **Item** | `Item:give(id,qty)`, `giveBatch`, `sort`, `repairAll`, `discardAll`, `unlockLocked` | `sendToHost` RPC (`GiveItemThread`) + caves for unlock (`66 0F 6E 40 2C`) |
+| **Vision** | `Vision:hitWalls/groundSee/airSee` | Noclip-style gates (`intersectRay+0x62`, `getEyeHeight+0x29`, `8B 41 2C` cave) |
+| **Room** | `Room:allDie/allDance`, `Player:kickRoom(uid)` | `ClientPlayer::onDie` iter + `doJump` iter + `RoomManager::requestRoomKickPlayer` |
+| **Net** | `Net.send(msg,json)`, `Net.sniff(true/false)` | Generic `sendToHost` (`SandBoxManager::sendToHost`) + 5-byte JMP hook that logs `msg|json` to console |
 
-#### Local State Modification
-- Modify local player variables
-- Change local visual settings (already exists in Zelvex, but Lua can do more)
-- Trigger local animations/effects
+`native.*` flat aliases exist for every command (`native.aimbot`, `native.giveItem`, etc.). `zout` is an alias for `print`.
 
-### What It CANNOT Do
+#### In-Game UI (Full ImGui)
+
+Declarative windows built from Lua, rendered inside the game's present path. **INSERT** toggles, coexistence input (messages over your panels go to ImGui, everything else passes to the game, `WM_INPUT` frozen only while hovering).
+
+```
+gui.start() / show() / reset() / accent(r,g,b)   windows
+gui.window(title) -> handle
+gui.label / textColored / paragraph (card) / separator / sameLine
+gui.button / smallButton / buttonColored (full-width accent)
+gui.toggle / toggleDesc (title+desc+right switch) / slider
+gui.dropdown / combo / listbox  (8 options, live via gui.opts)
+gui.input (text) / color (picker) / progress (bar)
+gui.keybind (click then press any VK, INSERT reserved) / section (collapsing header)
+gui.tab (sidebar page) / radar (HUD circle, dots/boxes/crosses)
+gui.get / set / opts / config / clear
+```
+
+Limits: 5 windows × 96 widgets, 8 options per combo, 64 chars per input, 64 chars per label, 16 `Events.onTick` handlers, 64 pending overlay events.
+
+#### ESP / Radar
+
+- **Radar HUD** (`gui.radar`) — foreground circle, rotates with yaw (`[[pc+0x950]+4]`), range 3k/6k/12k, self arrow, team-colored dots. Always works.
+- **W2S** — `Esp.w2s(uid) -> x,y,z` via `PlayerControl::getPointToScreen(&sx,&sy,&sz,actor,0)` and `Esp.screen()->W,H` (real swapchain size cached each frame). Needs live calibration: run `CALIBRATE.lua` with another player in world, hold them at center/left/right/top/bottom/behind and paste the SUMMARY block.
+
+#### Background Work + Network
+
+- `Events.onTick(fn)` / `Events.clear()` — 16 handlers stored as registry refs, pumped every ~30ms when no script is running; failing handlers auto-removed.
+- `input.key(vk)` — `GetAsyncKeyState` edge detection for script hotkeys.
+- `http.get(url)` / `http.post(url, body, ctype)` — WinINet, 10s timeout, HTTPS auto-flagged; enables remote hubs (`loadstring(http.get(...))()`).
+- Global hotkeys `Ctrl+Alt+1/2/3` — system-wide, run Lua one-liners from the Misc tab even while the game is focused.
+
+### What It CANNOT Do (Today)
 
 | Limitation | Why |
 |---|---|
-| **Directly modify server state** | Server validates all state changes. Client code is untrusted. |
-| **Execute before VM initializes** | `lua_State*` is only valid after the game's Lua VM is fully loaded. Wait until you're in-game. |
-| **Survive infinite loops** | `CreateRemoteThread` has a 5-second timeout. The thread is killed if code doesn't return. |
-| **Bypass server-side anticheat** | Server validates item/position changes. Client-only changes are fine. |
-| **Access server-side Lua APIs** | `Script` (server-side scripts) are not accessible from the client VM. |
-| **Modify other players** | Other players' state is managed server-side. |
+| **2D boxes/nameplates through walls (without calibration)** | Needs a calibrated W2S or a ViewProj capture (`VSSetConstantBuffers` hook) — radar works, boxes need that step |
+| **Server-side bypass** | `giveItem`/`teleport` RPCs are validated server-side; host-only cheats (`allDie`, `kick`) revert on official servers |
+| **Survive a game update without a Pattern Doctor run** | AOBs (`39 39 74 11 40` teleport hook, `74 56` noclip, etc.) shift by bytes; re-scan or update `cheat_defs.h` |
+| **Large scripts >16 KB in one go** | Shared-memory `code` buffer is 16 KB. Split or fetch remotely |
+| **Non-ASCII labels** | Overlay uses the default ImGui ASCII atlas; use plain text |
 
 ---
 
 ## Known Issues & Caveats
 
-### 1. VM Must Be Initialized
-The game's Lua VM is created during startup. If you try to execute code before the VM exists, you'll see "VM not initialized." **Wait until you're fully loaded into a world** before executing.
-
-### 2. Thread Timeout
-Each execution gets a 5-second timeout. If your Lua code takes longer than 5 seconds (e.g., long loops, heavy computation), the thread will be terminated. The game won't crash, but your code won't complete.
-
-### 3. Return Value Detection
-After `lua_pcall` completes, the injector checks the thread exit code. If it's `0` or `1`, it reports "Success." This is a simplification — it doesn't capture error messages from the Lua stack. For debugging, you'll need to use `print()` or CustomUI to display output in-game.
-
-### 4. Code Size Limit
-Remote memory allocation has a practical limit. Very large scripts (>64KB) may fail to allocate. For large scripts, consider:
-- Breaking them into smaller chunks
-- Using `dofile()` / `loadfile()` to load from the game's filesystem
-
-### 5. String Encoding
-Code is sent as UTF-8. Lua source files in the game use UTF-8. Non-ASCII characters in your code should work fine.
+1. **Join a map before you cheat.** `GetPlayer()` / `GetChatObj()` return null in the lobby; natives then return `ERR: not in world` instead of crashing (since the null-guard patch).
+2. **Polling is streaming.** Console flushes incrementally via `outLen`; infinite loops now print live, but `STOP` still aborts via the instruction hook.
+3. **Name color (`#R`, `#c{...}`) preview is local.** The confirmation preview rendering colored text does **not** mean the server will store `#` — replay the `sendToHost` packet with `Net.sniff` to test; `/api/health`-only captures in Fiddler mean the name change is binary RPC, not HTTP.
+4. **Fiddler vs Wireshark for this game.** Fiddler sees only WinINet HTTP; the name-change RPC rides on `43.174.233.127:4018` binary TCP. Use `Net.sniff(true)`, change to `Test123`, watch `[sniff] msg | json`, then `Net.send` the same msg with `#RTest`.
+5. **Code page** is UTF-8; `#b` blink etc. are renderer features.
 
 ---
 
 ## Testing Guide
 
 ### Prerequisites
-- Zelvex built from source (`cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && cmake --build build`)
-- Mini World Creata running (English or any language)
-- Game fully loaded into a world (not just the main menu)
+
+- Zelvex built (`cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && cmake --build build` with `C:\msys64\ucrt64\bin;C:\msys64\mingw32\bin` in `PATH`)
+- Mini World Creata running, fully loaded into a world
+- `ATTACH` shows `GAME ATTACHED` and `INJECT DLL` succeeded
 
 ### Test Steps
 
-1. **Launch Zelvex**
-2. **Click ATTACH** (or wait for auto-attach)
-3. **Click the "Lua" tab** in the sidebar
-4. **Enter test code** in the editor
-5. **Click EXECUTE**
-6. **Check the status label** — should say "Success!" or "Error"
+1. Launch Zelvex, **ATTACH**, **INJECT DLL**
+2. Open the **Lua** tab -> **EXECUTE** a snippet -> check **Console** (right pane, auto-scrolls)
+3. In-game press **INSERT** to show overlay; run a hub script and check sidebar pages
 
-### Test Scripts (Progressive Difficulty)
+### Test Scripts (Progressive)
 
-#### Test 1: Basic Execution (Verify VM Works)
+**1 — Basic (VM alive)**
 ```lua
-print("Zelvex Lua injector works!")
-```
-This is the simplest test. If this doesn't work, the VM isn't initialized or the injector can't resolve functions.
-
-#### Test 2: Read Player Info
-```lua
-local player = Player:getLocalPlayer()
-if player then
-    print("Player name: " .. tostring(player:getName()))
-    local pos = player:getPosition()
-    print("Position: " .. pos.x .. ", " .. pos.y .. ", " .. pos.z)
-end
+print("hi " .. _VERSION)   -- should print  hi Lua 5.1
 ```
 
-#### Test 3: Modify Local State
+**2 — Read state**
 ```lua
-local player = Player:getLocalPlayer()
-if player then
-    player:setPosition(0, 100, 0)
-end
+print("uid", Player:getUid())
+print("pos", Player:getPos())
+print("players", Players.count())
 ```
 
-#### Test 4: Create UI Element
+**3 — Write state**
 ```lua
-CustomUI:open("test_ui", "Hello from Zelvex!")
+Player:fly(true); wait(2); Player:fly(false)
+Player:setWalkSpeed(12)
 ```
 
-#### Test 5: Send RPC to Host
+**4 — UI + radar**
 ```lua
-RemoteFunction:FireServer("giveItem", 10001, 1)
+assert(gui.start()); gui.reset()
+local w = gui.window("Test")
+gui.label(w, "hello"); gui.button(w, "hi", function() print("click") end)
+gui.radar(w, 110, 1, 6000)
 ```
 
-#### Test 6: Complex Script
+**5 — RPC**
 ```lua
-local count = 0
-local timer = Timer:new(1000, function()
-    count = count + 1
-    print("Tick: " .. count)
-    if count >= 5 then
-        timer:stop()
-    end
-end)
-timer:start()
+Net.send("TestMsg", '{"x":1}')
+-- or: Chat:send("hello from Zelvex")
+```
+
+**6 — W2S calibration (needs a second player in world)**
+```lua
+-- load and run CALIBRATE.lua from the repo
+-- follow center/left/right/top/bottom/behind prompts, paste SUMMARY
+Esp.w2s(targetUid); print(Esp.screen())
+```
+
+**7 — Sniff the name change**
+```lua
+Net.sniff(true)   -- then change name to Test123 in game, watch [sniff] lines
+Net.sniff(false)
+Net.send("ChangeNick", '{"nick":"#RTest123"}')  -- msg name from sniff
 ```
 
 ---
@@ -192,68 +191,69 @@ timer:start()
 ## Architecture Notes
 
 ### DLL Dependencies
+
 | DLL | What We Use |
 |---|---|
-| `liblua.dll` | Lua 5.1+rvm — `luaL_loadstring`, `lua_pcall` |
-| `libSandboxEngine.dll` | `SandboxCoreLuaDirector::GetCoreLuaDirector()`, `getLuaState()` |
-| `libSandboxEngineDriver.dll` | (Fallback for Lua state resolution) |
+| `libSandboxEngine.dll` | `g_pPlayerCtrl` (`0x27772F8`), `WorldManager`, `sendToHost` (`SandBoxManager::sendToHost`), `setDayTime` |
+| `libMiniBaseGame.dll` | player table `[[+0xB36C]+78]+68`, 40 slots |
+| `libiworld.dll` | `RoomManager::requestRoomKickPlayer`, chat func, `g_nHomeGardenSaveVersion` |
+| `libEngine.dll` (ANGLE) | `d3d11`/`dxgi` — we hook `SwapChain::Present` (vtable[8]) |
 
-### Mangled Symbol Names (32-bit MSVC)
-```
-?GetCoreLuaDirector@SandboxCoreLuaDirector@MNSandbox@@SAPAV12@XZ
-?getLuaState@SandboxCoreLuaDirector@MNSandbox@@QAEPAVlua_State@@XZ
-?GetLuaState@SandboxCoreLuaDirector@MNSandbox@@QAEPAVlua_State@@XZ
-```
+Exports resolved at attach via `ResolveExport` + live `CollectExports` scans (for names absent from our snapshot, e.g. `requestRoomKickPlayer`).
 
 ### Memory Layout
+
 ```
-Target Process (MiniGameApp.exe, 32-bit WoW64)
-├── liblua.dll              ← Lua VM implementation
-│   ├── luaL_loadstring()   ← Compiles Lua source string
-│   └── lua_pcall()         ← Executes compiled chunk
-├── libSandboxEngine.dll    ← Game engine + sandbox
-│   ├── SandboxCoreLuaDirector (singleton)
-│   │   └── lua_State*      ← The actual Lua VM pointer
-│   └── SandBoxManager
-│       └── sendToHost()    ← RPC function (already used by Zelvex)
-└── Remote memory (allocated by Zelvex)
-    ├── [code buffer]       ← Lua source as UTF-8
-    └── [shell buffer]      ← x86 shellcode for injection
+Zelvex.exe (Qt6, 64-bit)                 lua_dll.dll (Lua+ImGui, 32-bit, inside MiniGameApp.exe)
+  editor / console (streaming)    <---->   LuaSharedMemory "ZelvexLuaSharedMem"
+  hotkeys Ctrl+Alt+1..3                    5*4 header + 16K code + 32K output = 49172 bytes
+  memory_manager (attach/patches)          (both sides define it identically)
+                                           |
+                                           +-- persistent lua_State* g_L
+                                           +-- gui.* -> game_overlay.cpp (ImGui/DX11/Win32)
+                                           +-- native.* -> RunNativeCmd()
+                                           |     export resolution (21k symbols)
+                                           |     AOB patches + code caves (save/restore)
+                                           |     direct thiscall into game classes
+                                           +-- Events tick pump (16 refs, idle loop)
+                                           +-- http (WinINet, 10s) + Net.sniff hook
 ```
 
-### Cross-Bitness Injection
-- Zelvex is 64-bit
-- MiniGameApp.exe is 32-bit (WoW64)
-- Shellcode is assembled as x86 (32-bit) and injected into the 32-bit process
-- All pointers in shellcode are 32-bit addresses within the target's address space
+Both sides define `LuaSharedMemory` with `MAX_CODE=16384, MAX_OUTPUT=32768, command/done/error/cancel/outLen` — keep them identical or the mapping breaks.
+
+### Overlay Hook
+
+- Game is ANGLE → D3D11, so `IDXGISwapChain::Present` is the present path.
+- Hook: dummy `D3D11CreateDeviceAndSwapChain` → read shared vtable page → swap slot 8 → copy-on-write makes it process-local. No code patching, no disassembly.
+- Input: coexistence — `ImGui::WantCaptureMouse/Keyboard` decides whether a message is consumed; otherwise it passes straight to the game. `WM_INPUT` frozen only while hovering your panels. `INSERT` toggles with anti-repeat.
+
+### Cross-Bitness
+
+- Zelvex `.exe` is 64-bit (UCRT64), `lua_dll.dll` is 32-bit (MINGW32, `-m32`, `i686-w64-mingw32-g++`). CMake pins the DLL compiler explicitly; the host app uses `CMAKE_POST_BUILD` to copy `bin/liblua_dll.dll` next to the exe as `lua_dll.dll`.
 
 ---
 
 ## Comparison with Existing Zelvex Features
 
-| Feature | Existing Cheats | Lua Injector |
+| Feature | Old Cheat Cards (AOB patches) | Lua Platform |
 |---|---|---|
-| **Mechanism** | AOB scan + byte patching / sendToHost shellcode | Lua VM function calls |
-| **Scope** | Specific game functions (hardcoded patterns) | Any Lua code the VM supports |
-| **Flexibility** | Fixed per-cheat | Unlimited — you write the code |
-| **Stability** | Version-dependent (AOB patterns break) | More stable — uses exported functions |
-| **UI** | Predefined cheat cards | Free-form code editor |
-| **Extensibility** | Requires adding new CheatDef entries | Just type new Lua code |
+| Mechanism | Per-cheat byte patches / shellcode caves | Persistent VM + direct engine calls + patches only where needed |
+| Scope | Fixed set | Unlimited — write new scripts |
+| Stability | AOB shifts break until Pattern Doctor | Exports + live scans, more resilient |
+| UI | Prebuilt cards per tab | Free-form ImGui windows from scripts (redz-style sidebar pages) |
+| Extensibility | Add a `CheatDef` entry | Just type Lua |
 
 ---
 
 ## What Could Be Added Next
 
-1. **Error message capture** — Read the Lua stack after `lua_pcall` to get error strings
-2. **Async execution** — Don't block the UI thread during injection
-3. **Code autocomplete** — Lua keyword/function completion in the editor
-4. **Script files** — Load `.lua` files from disk instead of pasting code
-5. **Persistent scripts** — Save frequently-used scripts to a list
-6. **VM state inspection** — Read the Lua stack, global variables, loaded modules
-7. **Direct memory access via Lua** — Expose Zelvex's memory read/write as Lua functions
+1. **ViewProj capture** — hook `VSSetConstantBuffers` to steal the ViewProj matrix every frame; then C-side `worldToScreen(head)` for true chams/boxes without `Esp.w2s` calibration.
+2. **Bone ESP** — offsets per actor type for skeletons (needs per-model dump).
+3. **Trigger bot / TeleAura** — reuse the `pickActor+aim` path on a timer.
+4. **Theme API** — `gui.theme(r,g,b, rounding)` per window.
 
 ---
 
 ## Disclaimer
 
-This tool is for educational and research purposes. The Lua injector accesses the game's internal VM through documented Lua C API functions. Use at your own risk.
+Educational / research purposes. The executor calls documented engine exports and Lua C API from injected code. Use on accounts and servers you are allowed to. Not affiliated with Mini World.
