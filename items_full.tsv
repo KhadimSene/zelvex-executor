@@ -1,0 +1,2131 @@
+﻿1	Flamas Ultra Stone
+2	Functional Block
+3	Static Water
+4	Active Water
+5	Static Lava
+6	Flowing Lava
+7	Teleport Effect
+8	Embossed Brick
+9	Speedup Block
+10	Celesthium Block
+11	Static Honey
+12	Active Honey
+13	Static Quicksand
+14	Active Quicksand
+15	Curse Stone
+16	Curse Stone-Activated
+17	Static Poison
+18	Active Poison
+19	Aeolian Rock
+20	Horas Air
+21	unavailable in this version
+22	unavailable in this version
+23	Contourite
+24	Mn Nodule Ore
+25	Reef
+26	Drift Bottle
+27	Drift Bottle from Afar
+28	Small Glass Bottle (Block)
+29	Yellow Sand
+30	unavailable in this version
+31	Solid Ice Spikes
+32	Floating Ice Spikes
+33	Ordinary Crystal Core Ore
+34	Frostfire Ore
+35	Frostfire Stone
+36	Cave Entrance Refresh
+37	Cave Tunnel Refresh
+38	Cave Cavern Refresh
+39	Cave Hole Refresh
+100	Grassy Soil Block
+101	Soil
+102	Farmland
+103	Pit
+104	Rock
+105	Moss Stone
+106	Fine Yellow Sand
+107	Rubble
+108	Plain Brick
+109	Sand Soil
+110	Stone
+111	unavailable in this version
+112	Black Crystal
+113	Floating Ice
+114	Mud
+115	Fluffy Snow
+116	Horas Rock
+117	Horas Grass Block
+118	Horas Cloud
+119	Dry Soil
+120	Frozen Soil
+121	Frozen Pit
+122	Thick Snow
+123	Natural Ice
+124	Sulfur Rock
+125	Searing Sand
+126	Magic Rock
+127	Sponge
+128	Red Sand
+129	Thick Snow
+130	Thick Snow Block
+131	Solid Ice
+132	Sulfur Crystal Sand
+133	Empty Honeycomb
+134	Full Honeycomb
+135	Horas Totem-Earth
+136	Horas Totem-Sky
+137	Horas pit
+138	Toxic Block
+139	BOSS Fight Utility Block
+140	Life Plinth
+141	Courage Plinth
+142	Wisdom Plinth
+143	Broken Plinth
+144	Crimson Butterfly Bottle
+145	Cyan Butterfly Bottle
+146	Fragrant Butterfly Bottle
+147	White Butterfly Bottle
+148	Dragonkin Butterfly Bottle
+149	Bell Butterfly Bottle
+150	Red Clay Farmland
+151	Red Clay Pit
+152	Horas Rock Upright Lamina
+153	Bamboo Upright Lamina
+154	Carmine Upright Lamina
+155	Cement Brick Upright Lamina
+156	Sulfur Brick Upright Lamina
+157	Stone Upright Lamina
+158	Fine Brick Upright Lamina
+159	Titanium Upright Lamina
+160	Brass Upright Lamina
+161	Mica Upright Lamina
+162	Mithril Upright Lamina
+163	Flamo Upright Lamina
+164	Citrine Upright Lamina
+165	Cinerous Upright Lamina
+166	Crimson Upright Lamina
+167	Sunset Orange Upright Lamina
+168	Begonia Red Upright Lamina
+169	Ivory Upright Lamina
+170	Dark Orange Upright Lamina
+171	Upright Lamina
+172	Yellow Brick Upright Lamina
+173	Mn Block Upright Lamina
+174	Hoary Upright Lamina
+200	Cherry Wood
+201	Larch Wood
+202	Poplar Wood
+203	Redwood
+204	Phoebe Wood
+205	Walnut Wood
+206	Wooden Board
+207	Dark Orange Board
+208	Ivory Board
+209	Begonia Red Board
+210	Sunset Orange Board
+211	Crimson Board
+212	Cherry Sapling
+213	Larch Sapling
+214	Poplar Sapling
+215	Redwood Sapling
+216	Phoebe Sapling
+217	Walnut Sapling
+218	Cherry Wood Leaves
+219	Larch Leaves
+220	Poplar Leaves
+221	Redwood Leaves
+222	Phoebe Leaves
+223	Walnut Leaves
+224	Grass
+225	Withered Grass
+226	Soil-shoot
+227	Perilla
+228	Hollyhock
+229	Corn
+230	Giant Buru
+231	Giant Buru Seedling
+232	Aerial Root
+233	Red Clay
+234	Rice
+236	Cucumber
+237	Redwood Fruit
+238	Thorn Grass
+239	Giant Scaly Fruit
+240	Giant Scaly Fruit Seedling
+241	Sweetpotato
+242	Cereus Stem
+243	Wild Corn
+244	Christmas Tree
+245	Aquatic Plant
+246	Seaweed
+247	Floating Petal
+248	Floating Wooden Board
+249	Pinecone
+250	Lotus
+251	Bamboo
+252	Bamboo Leaves
+253	Bamboo Shoot
+254	Peachwood
+255	Peach Leaves
+256	Peach Sapling
+257	Genwood
+258	Genwood Leaves
+259	Genwood Sapling
+260	Bald Genwood
+263	Horas Spore Seed
+264	Cinerous Board
+265	Bald Genwood Board
+266	Mutated Soil-shoot
+267	Mutated Perilla
+268	Mutated Plant Stall
+269	Fluorescent Grass
+270	Horas Spore
+271	Horas Spore
+272	Horas Spore
+273	Horas Spore
+274	Horas Spore
+275	Horas Spore
+276	Horas Spore
+277	Horas Spore
+278	Horas Spore
+279	Horas Spore
+280	Horas Spore
+281	Horas Spore
+282	Horas Spore
+283	Horas Spore
+284	Horas Spore
+285	Horas Spore
+286	Mutated Perilla Stalk
+287	Ball-less Fern
+288	Capitulum Fern
+289	Sawtooth Gravel Wall
+290	Sawtooth Moss Stone Wall
+291	Sawtooth Horas Rock Wall
+292	Coconut Sapling
+294	Giant Coconut Leaf
+295	Large Coconut
+296	Giant Mutated Coconut Leaf
+297	Mutated Large Coconut
+298	Burning Torch
+299	Extinct Torch
+300	Campanula
+301	Orchid
+302	Limonium Sinuatum
+303	Dracaena Flower
+304	Hyacinth
+305	Crowfoot Grass
+306	Dracaena
+307	Red Agave
+308	Orange Agave
+309	Grey Agave
+310	Pink Agave
+311	White Coco Flower
+312	Tecoma Stans
+313	Wild Rose
+314	Red Alga
+315	Game version is too low
+316	Game version is too low
+317	Game version is too low
+318	Game version is too low
+319	Game version is too low
+320	Game version is too low
+321	Peach Blossoms
+322	Blossoms
+323	Fallen Leaves
+324	Cherry Fruit
+325	Larch Fruit
+326	Arbor Fruit
+327	Genwood Fruit
+328	Redwood Fruit
+329	Walnut Fruit
+330	Peach Fruit
+331	Poplar Fruit
+332	Cherry Wood Branch
+333	Cherry Wood Twig
+334	Larch Branch
+335	Larch Twig
+336	Genwood Branch
+337	Genwood Twig
+338	Walnut Tree Branch
+339	Walnut Tree Twig
+340	Peach Tree Branch
+341	Peach Tree Twig
+342	Poplar Branch
+343	Poplar Twig
+344	Corn Powder
+345	Cotton Sapling
+346	Giant Scallop
+348	Mn Block
+349	Redwood Branch
+350	Redwood Twig
+351	Light Beam
+352	Celesthium Light Beamer
+353	NOT Gate
+354	AND Gate
+355	OR Gate
+356	Celesthium Diverter
+357	Celesthium Delayer
+358	Switch
+359	Transducer-Touch
+360	Transducer-Ordinary
+361	Transducer-Creature
+362	Transducer-Sandstone
+363	Button-Touch
+364	Button-Ordinary
+365	Celesthium Blocker
+366	Celesthium Counter
+367	Robot Arm
+368	Push-pull Robot Arm
+369	Collection Pipe
+370	Transmission Pipe
+371	Detection Pipe
+372	Celesthium Booster
+373	Key Door
+374	Celesthium Comparator
+375	Citrine Board
+376	Citrine Stair
+377	Citrine Lamina
+378	Arbor Fruit
+379	Arbor Fruit Block
+380	Shrub Sapling
+382	Rainforest Arbor Sapling
+383	Banana Sapling
+384	Banana Tree Leaves
+385	Banana Block
+386	Banana Tree Trunk
+387	Celesthium Calculator
+390	Patterned Pillar
+392	Shrub
+394	Stardust Leaves
+395	Rainforest Arbor Leaves
+396	Rainforest Core Arbor
+397	Moss
+398	Ash Block
+399	Ash Farmland
+400	Flamo Ore
+401	Mithril Ore
+402	Flammable Ice Ore
+403	Sardonyx Gemstone
+404	Tungsten Ore
+405	Celesthium Ore
+406	Amber Gemstone
+407	Mica Ore
+408	Tungsten Block
+409	Amber Block
+410	Flamo Block
+411	Mithril Block
+412	Mica Block
+413	Patterned Mica Block
+414	Stripe Mica Block
+415	Celesthium Block
+416	Flammable Ice Block
+417	Sardonyx Block
+418	Floor
+419	Dark Orange Floor
+420	Begonia Red Floor
+421	Soil Brick
+422	Rough Brick
+423	Rough Yellow Brick Board
+424	Fine Yellow Brick Board
+425	Glazed Brick
+426	Lined Glazed Brick
+427	Vertical Glazed Brick
+428	Grid Glazed Brick
+429	Irregular Glazed Brick
+430	Ice Brick
+431	Campanula Seed
+432	Orchid Seed
+433	Limonium Sinuatum Seed
+434	Dracaena Flower Seed
+435	Hyacinth Seed
+436	Crowfoot Grass Seed
+437	Dracaena Seed
+438	Red Agave Seed
+439	Orange Agave Seed
+440	Grey Agave Seed
+441	Pink Agave Seed
+442	White Coco Flower Seed
+443	Tecoma Stans Seed
+444	Wild Rose Seed
+445	Horas Copper Ore
+446	Purple Fluorite Ore
+447	Mysterious Fossil
+448	Oil Block
+449	Horas Copper Block
+450	Purple Fluorite Block
+451	Copper Ore
+452	Titanium Ore
+453	Attack Rune Ore
+454	Defense Rune Ore
+455	Efficiency Rune Ore
+456	Brass Block
+457	Titanium
+458	Cactus Seedling
+459	Cactus Seedling
+460	Cactus Flower
+461	Cactus Fruit
+462	Ostrich Egg
+463	Cactus Branch
+464	Mycelium
+465	Carmine Poisonous Mushroom
+466	Horas Spore Feed
+467	Mutated Soil-shoot Feed
+468	Mutated Perilla Feed
+469	Wild Cotton Tree
+470	Question Mark Block
+471	Question Mark Block
+472	Question Mark Block
+473	Question Mark Block
+474	Question Mark Block
+475	Question Mark Block
+476	Populus Sapling
+477	Populus Wood
+478	Populus Branch
+479	Populus Twig
+480	Populus Leaves
+481	Populus Flower
+482	Populus Tears
+483	Mural
+484	Tent
+485	Juvenile Coral
+486	Horn Coral
+487	Albino Horn Coral
+488	Bubble Coral
+489	Albino Bubble Coral
+490	Disc Coral
+491	Albino Disc Coral
+492	Tree Coral
+493	Albino Tree Coral
+494	Fluorescent Algae Seedling
+495	Fluorescent Algae
+496	Lighted Glow Stick Block
+497	Used Glow Stick Block
+498	Palette Stand
+499	Void Jar
+500	Fire
+501	Fine Brick
+502	Cracked Brick
+503	Moss Stone Brick
+504	Patterned Rock Brick
+505	Gravel Block
+506	Moss Stone Lamina
+507	Yellow Brick Lamina
+508	Palette Stand (Hanging)
+509	Stone Lamina
+510	Cement Brick Lamina
+511	Fine Brick Lamina
+512	Sulfur Brick Lamina
+513	Mica Lamina
+514	Lamina
+515	Dark Orange Lamina
+516	Ivory Lamina
+517	Begonia Red Lamina
+518	Sunset Orange Lamina
+519	Crimson Lamina
+520	Stair
+521	Dark Orange Stair
+522	Ivory Stair
+523	Begonia Red Stair
+524	Sunset Orange Stair
+525	Crimson Stair
+526	Mithril Stockade
+527	Yellow Brick Stair
+529	Stone Stair
+530	Cement Brick Stair
+531	Fine Brick Stair
+532	Sulfur Brick Stair
+533	Mica Stair
+534	Wooden Fence
+535	Wooden Fence Door
+536	Dawn Stone
+537	Sulfur Brick Block
+538	Sulfur Brick Fence
+539	Ivory Stockade
+540	Antique Yellow Brick
+541	Exquisite Yellow Brick
+542	Mn Block Lamina
+547	Cement Brick Block
+548	Gravel Wall
+549	Moss Stone Wall
+550	Fluorescent Crystal Block
+551	Rough Brick Fence
+552	Ivory Fence
+553	Wooden Stockade
+554	Copper Fence
+555	Wooden Window
+556	Glass Window
+557	Ivory Glass Window
+558	Honey Block
+559	Caramel Lump
+560	Crystalline Honey
+561	Charred Honey
+562	Carmine Board
+563	Bamboo Board
+564	Carmine Lamina
+565	Bamboo Lamina
+566	Carmine Stair
+567	Bamboo Stair
+568	Bamboo Fence
+569	Bamboo Fence Door
+570	Horas Rock Lamina
+571	Horas Rock Stair
+572	Horas Rock Wall
+573	Horas Rock Brick
+574	Cinerous Lamina
+575	Cinerous Stair
+576	Cinerous Fence
+578	Rainforest Statue
+579	Rainforest Arbor
+580	Altar
+581	Weather Forecaster
+582	Leopard Sleeping Bag
+583	Statue Plinth
+584	Venom
+585	Unknown Monument
+586	Altar Stele
+587	Sacred Fruit
+588	Broken Flame Sword
+589	Stoneman&#039;s Eye
+590	Sacred Trunk
+591	Sacred Seed
+592	Sacred Leaves
+593	Sacred Sap
+594	Star Station Console
+595	Teleporter Lvl 1
+596	Stone Statue
+597	Teleporter Lvl 2
+598	Buried Machinery
+599	Sandstone Pillar
+600	Cotton Block
+601	Cotton Block
+602	Cotton Block
+603	Cotton Block
+604	Cotton Block
+605	Cotton Block
+606	Cotton Block
+607	Cotton Block
+608	Cotton Block
+609	Cotton Block
+610	Cotton Block
+611	Cotton Block
+612	Cotton Block
+613	Cotton Block
+614	Cotton Block
+615	Cotton Block
+616	Cotton Felt
+617	Cotton Felt
+618	Cotton Felt
+619	Cotton Felt
+620	Cotton Felt
+621	Cotton Felt
+622	Cotton Felt
+623	Cotton Felt
+624	Cotton Felt
+625	Cotton Felt
+626	Cotton Felt
+627	Cotton Felt
+628	Cotton Felt
+629	Cotton Felt
+630	Cotton Felt
+631	Cotton Felt
+632	Lucid Glass Block
+633	Glass Block
+634	Glass Block
+635	Glass Block
+636	Glass Block
+637	Glass Block
+638	Glass Block
+639	Glass Block
+640	Glass Block
+641	Glass Block
+642	Glass Block
+643	Glass Block
+644	Glass Block
+645	Glass Block
+646	Glass Block
+647	Glass Block
+648	Glass Block
+649	Lucid Glass Pane
+650	Glass Pane
+651	Glass Pane
+652	Glass Pane
+653	Glass Pane
+654	Glass Pane
+655	Glass Pane
+656	Glass Pane
+657	Glass Pane
+658	Glass Pane
+659	Glass Pane
+660	Glass Pane
+661	Glass Pane
+662	Glass Pane
+663	Glass Pane
+664	Glass Pane
+665	Glass Pane
+666	Cement Block
+667	Colored Cement Block
+668	Colored Cement Block
+669	Colored Cement Block
+670	Colored Cement Block
+671	Colored Cement Block
+672	Colored Cement Block
+673	Colored Cement Block
+674	Colored Cement Block
+675	Colored Cement Block
+676	Colored Cement Block
+677	Colored Cement Block
+678	Colored Cement Block
+679	Colored Cement Block
+680	Colored Cement Block
+681	Colored Cement Block
+682	Colored Cement Block
+683	Dragon Stone
+684	Twill Black Stone
+685	Vertical Striped Candy
+686	Chocolate Brick
+687	Scented Lantern
+688	Chinese Signboard
+689	Chinese Hollowed-out Window
+690	Bass Block
+691	Alto Block
+692	Treble Block
+693	Instrument-Drum
+694	Instrument-Electron
+695	Instrument-Symphony
+696	Acyclic Electron
+697	Loop-Drum
+698	Loop-Electron
+699	Loop-Ambient
+700	Celesthium Generator
+701	Celesthium Generator
+702	Celesthium Amplifier
+703	Celesthium Amplifier
+704	Celesthium Comparator
+705	Celesthium Comparator
+706	Blue Celesthium Cable
+707	Celesthium Lamp
+708	Celesthium Lamp
+709	unavailable in this version
+710	Silk Thread
+711	Touch Transducer
+712	Ordinary Transducer
+713	Creature Transducer
+715	Touch Button
+716	Ordinary Button
+717	Launching Device
+718	Push-pull Robot Arm
+719	Robot Arm
+720	Throwing Device
+721	Spike Trap
+722	Thrower
+723	Peach Totem
+724	Switch
+725	Rail Node
+726	Piano
+727	Xiaolou Birthday Sculpture
+728	Radio
+729	Kinetic Energy Boost Node
+730	Desert Chest
+731	Wooden Skylight
+732	Black Dragon Statue
+733	Black Dragon Jar
+734	Ordinary Chest
+735	Exquisite Chest
+736	Gold Chest
+737	Simple Jar
+738	Clay Jar
+739	Painted Clay Jar
+740	Lava Stone
+741	Chaos Stone
+742	Chaos Statue
+743	Lava Jar
+744	Chaos Jar
+745	Sulfur Archer Totem
+746	Lava Statue
+747	Supply Jar
+748	Firefly Bottle
+749	Copper Lamina
+750	Mithril Lamina
+751	Flamo Lamina
+752	Titanium Lamina
+753	Copper Stair
+754	Mithril Stair
+755	Flamo Stair
+756	Titanium Stair
+757	Treasure Map Chest
+758	Sunken Ship Chest
+759	Common Sunken Ship Chest
+760	Coltsfoot Seed
+761	Coltsfoot
+762	Withered Shrub Sapling
+763	Withered Shrub
+764	Blessed Snow Lotus
+765	Ancient Stone
+780	Dance Hall
+781	Stone Creation Hammer
+782	Brass Creation Hammer
+783	Mithril Creation Hammer Block
+784	Titanium Creation Hammer
+785	Rune Table
+794	Stone Pot
+795	Mithril Pan
+796	Incomplete Crafting Table
+797	Crafting Table
+798	Mithril Smelting Table
+799	Copper Smelting Table
+800	Incomplete Crafting Table
+801	Storage Box
+804	Strange Stone
+805	Strange Stone Block
+806	Strange Brick
+807	Strange Moss Stone
+808	Strange Cracked Brick
+809	Strange Patterned Brick
+810	Monster Summoning Stone
+811	unavailable in this version
+812	Light Door
+813	Cordage
+814	Mithril Door
+815	Brass Celesthium Screen
+816	Giant Buru Lamp
+817	Torch
+818	Celesthium Screen (attached to the block)
+819	Black Dragon Egg
+820	Bookcase
+821	Stake
+822	Haystack
+823	unavailable in this version
+824	Incomplete Crafting Table
+828	Simple Sleeping Bag
+829	Potion Bench
+830	Barbecue Pizza
+831	Vege Pizza
+832	Mystery Chest
+833	Incomplete Crafting Table
+834	Powder Keg
+835	Standby
+836	Physical-properties Erase Firework
+837	Fluorescent Shroom
+839	Collection Transmitter
+840	R-Arm Unit
+841	Moving R-Arm Unit
+842	Mithril Spring
+843	Spring Unit
+844	Flamo Spring
+845	Coffer
+846	Super Coffer
+847	Christmas Giftbox
+848	Sky Lanterns
+849	Repeller
+850	Star Firework (S)
+851	Star firework (L)
+852	Climater
+853	Illuminater
+854	Sunset Orange Door
+855	Crimson Door
+856	Ivory Door
+857	Flamo Door
+858	Begonia Red Door
+859	Amber Door
+860	Dark Orange Door
+861	Wood Grain Lamp
+862	Ivory Glass Lamp
+863	Cinnabar Glass Lamp
+864	Carmine Glass Lamp
+865	Azure Blue Glass Lamp
+866	Goose Yellow Glass Lamp
+867	Turquoise Glass Lamp
+868	Begonia Red Glass Lamp
+869	Cinerous Glass Lamp
+870	Hoary Glass Lamp
+871	Virid Glass Lamp
+872	Violaceous Glass Lamp
+873	Sapphire Glass Lamp
+874	Crimson Glass Lamp
+875	Emerald Glass Lamp
+876	Scarlet Glass Lamp
+877	Coal Black Glass Lamp
+878	Sofa Test
+879	Christmas Bell
+880	Christmas Ribbon
+881	Firework
+882	Firework (On)
+883	Exquisite Bed
+884	Luxury Bed
+885	Princess Bed
+886	Mithril Celesthium Screen
+887	Mithril Celesthium Screen (Sticking)
+888	Titanium Celesthium Screen
+889	Titanium Celesthium Screen (Sticking)
+890	Lava Celesthium Screen
+891	Lava Celesthium Screen (Sticking)
+892	Wooden Signboard
+893	Stone Signboard
+894	Mithril Signboard
+895	Flamo Signboard
+896	Tungsten Signboard
+897	Lava Signboard
+898	Lantern
+899	Classic Street Lamp
+900	Modern Street Lamp
+901	Boarman Totem
+902	Wild Jockey Totem
+903	Spear Goblin Totem
+904	Bat Totem
+905	Wooden Mushroom Lamp
+906	Boom Egg Totem
+907	Stone Mushroom Lamp
+908	Lava Giant Totem
+909	Sulfur Archer Totem
+910	Dodo Totem
+911	Wowomon Totem
+912	Tonton Totem
+913	Antlered Deer Totem
+915	Fox Totem
+917	Flamasian Totem
+918	Ancient Black Dragon Totem
+919	Red Flag
+920	Blue Flag
+921	Green Flag
+922	Yellow Flag
+923	Orange Flag
+924	Purple Flag
+925	White Flag
+926	Black Brass Fence
+927	White Brass Fence
+928	Small Pot
+929	Large Pot
+930	Display Shelf
+931	Candlestick
+932	Candlestick
+933	Chandelier
+934	Elegant Wall Lamp
+935	Exquisite Wall Lamp
+936	Table Lamp
+937	Fortune
+938	Couplet Signboard
+939	Spring Festival Papercut
+940	Spring Festival Papercut: Fortune
+941	Spring Festival Papercut: Wealth
+942	Spring Festival Papercut: Longevity
+943	Spring Festival Papercut: Joy
+944	Spring Festival Lantern
+945	Chinese Palace Lantern
+946	Red Pottery Pot
+947	Green Pottery Pot
+948	Large Porcelain Pot
+949	Festival Palace Lantern
+950	Magic Mount Egg
+951	Flying Squirrel Egg
+952	Qilin Egg
+953	Running Bird Egg
+954	Little Elephant Egg
+955	Little Seal Egg
+956	Kitty Egg
+957	Little Unicorn Egg
+958	Hamster Egg
+959	unavailable in this version
+960	U-Concrete
+961	U-Cracked Clay
+962	White Ultra Stone
+963	U-Solid Ice
+964	U-Steel Plate
+965	Chair
+966	Table
+967	Sofa
+968	Brown Fireplace
+969	Cabinet
+970	Ivory Chair
+971	Ivory Table
+972	Ivory Sofa
+973	White Fireplace
+974	Ivory Cabinet
+975	Pine Chair
+976	Pine Table
+977	Pine Sofa
+978	Black Fireplace
+979	Pine Cabinet
+980	Anniversary Cake
+981	Patterned Brick
+982	Brown Striped Brick
+983	Black White Brick
+984	Light-blue Striped Glass Pane
+985	Bluegreen Striped Glass Pane
+986	Colored Flag
+987	unavailable in this version
+988	Supply Chest
+989	Item Supply Chest
+990	Public Spawn Point
+991	Team 1: Red Team Spawn Point
+992	Team 2: Blue Team Spawn Point
+993	Team 3: Green Team Spawn Point
+994	Team 4: Yellow Team Spawn Point
+995	Team 5: Orange Team Spawn Point
+996	Team 6: Purple Team Spawn Point
+997	Shiny Block
+998	Initial Supply Chest
+999	Spawn Chest
+1000	Copier
+1001	Invisible Wall Block
+1004	Marker (-)
+1005	Marker (+)
+1006	MarkerNo.3
+1007	MarkerNo.4
+1008	Sliding Block
+1009	Red Celesthium Cable
+1010	Rotor Block
+1011	Signpost-Public
+1012	Stop Signpost
+1013	Marker No.0
+1014	X-Bomb
+1015	Mini X-Bomb
+1016	I-bomb
+1017	Mini I-bomb
+1018	Invisible Wall-Bullet Penetrable
+1019	Nest
+1020	Dodo Feed
+1021	Starry Trophy
+1022	unavailable in this version
+1023	unavailable in this version
+1024	unavailable in this version
+1025	unavailable in this version
+1026	Team 1 Signpost
+1027	Team 2 Signpost
+1028	Team 3 Signpost
+1029	Team 4 Signpost
+1030	Team 5 Signpost
+1031	Team 6 Signpost
+1032	Sensor Block
+1033	Calculator
+1034	Celesthium Blocker
+1035	Random Supply Jar
+1036	Prep Point
+1037	Touch Block
+1038	Creature Trigger Block
+1039	Score Block
+1040	Ball Trigger Block
+1042	Horas Totem
+1043	Totem Gem
+1044	Totem Gem (Initial Altar)
+1045	Oxygen Refiner Device
+1046	Torch-Off
+1047	Gas Tank (Empty)
+1048	Gas Tank (Oxygen)
+1049	Mystery Totem (Toxic Core)
+1050	Horas Plant Medium
+1051	Oxy
+1052	Signal Generator
+1053	Signal Receiver
+1054	Signal Resolver
+1055	Small Lockbox
+1056	Large Lockbox
+1057	Horas Pack
+1058	Giant Statue
+1059	Giant Core
+1060	Reflector
+1061	Giant Jar
+1062	Area Duplication Block
+1063	Blueprint Crafting Table
+1064	Blueprint Plan
+1065	Blueprint Building Block
+1066	Rangefinder
+1067	Physics Trigger Block
+1068	Hoop Block
+1069	Star Block
+1070	Fluorescent Block
+1071	Fluorescent nugget
+1072	Public Initial Spawn Point
+1073	Team 1: Red Team Initial Spawn Point
+1074	Team 2:Blue Team Initial Spawn Point
+1075	Team 3:Green Team Initial Spawn Point
+1076	Team 4:Yellow Team Initial Spawn Point
+1077	Team 5:Orange Team Initial Spawn Point
+1078	Team 6:Purple Team Initial Spawn Point
+1079	Individual Spawn Point
+1080	Mob Generator Block
+1081	Invisible Wall-Physical Item Penetrable
+1082	Car Block (Test)
+1083	Steering Wheel
+1084	Driver&#039;s Seat
+1085	Machine Workshop
+1086	Workshop (Test)
+1087	Power Wheel
+1088	Engine (Test)
+1089	Fuel Engine
+1090	Unlimited Engine
+1091	Passenger Seat
+1092	Sequence Editor
+1093	Impeller 001
+1094	Wing Unit
+1095	Empennage
+1096	Spaceship Thruster
+1097	Robotic arm XI
+1099	Gas Tank
+1100	Map Teleport Block
+1101	Lab Door
+1102	Mirror Ice
+1103	Ice Lamp
+1104	Patterned Celesthium Block
+1105	Celesthium Mithril Block
+1106	Celesthium Mithril Plate
+1107	Nether Mithril Block
+1108	Thick Mithril Plate
+1109	Hollow Mithril Plate
+1110	Lab Lamp
+1111	Rusty Mithril Door
+1112	Mithril Net
+1113	Stripe Mithril Plate
+1114	Rusty Mithril Plate
+1115	Stripe Rusty Mithril Plate
+1116	Hollow Rusty Mithril Plate
+1117	Celesthium Rusty Mithril Block
+1118	Fluorescent Lamp
+1119	Patterned Mithril Block
+1120	Old Mithril Block
+1121	Old Mithril Block
+1122	Old Mithril Block
+1123	Old Mithril Block
+1124	Old Mithril Block
+1125	Old Mithril Block
+1126	Old Mithril Block
+1127	Old Mithril Block
+1128	Old Mithril Block
+1129	Old Mithril Block
+1130	Old Mithril Block
+1131	Old Mithril Block
+1132	Old Mithril Block
+1133	Old Mithril Block
+1134	Old Mithril Block
+1135	Old Mithril Block
+1136	Wintersweet Screen
+1137	Red Candlestick
+1138	Model Crafting Table
+1139	Red Candlestick
+1140	Teleport Core Block
+1141	Teleport Block
+1142	Item Model Crafting Table
+1143	Bookbinding Workbench
+1144	Bookshelf
+1145	Spring Festival Papercut: Ox
+1146	Festival Lantern
+1150	Creature Model Block
+1153	Test: Marker (-)
+1154	Test: Marker (+)
+1155	Test: Sliding Block
+1156	Test: Rotor Block
+1157	Test: Switch
+1158	Spherical Hinge Block
+1159	Hinge Block
+1160	Gripper
+1164	Shock Absorber
+1168	Infrared Sensor Block
+1180	Large Box (Horizontal)
+1181	Large Box (Vertical)
+1182	Celesthium Oscillator
+1183	Yellow Brick Transducer
+1184	Celesthium Booth
+1185	Dodo Nest
+1186	Equinox Flower
+1187	Equinox Pineapple
+1188	Rudder
+1189	Spiral Thruster
+1190	Bucket Float
+1191	Sea God Statue
+1192	Meat Drying Rack
+1193	Sea God Statue (Broken)
+1194	Equinox Seed
+1195	Shell Couple Sofa
+1196	Robotic Arm II
+1197	Push-pull robotic arm II
+1198	Robotic Arm Parts II
+1199	Mobile Robotic Arm II
+1200	Bonfire
+1201	Stele
+1202	Tribe Totem
+1203	Farmer Flag
+1204	Woodman Flag
+1205	Guardian Flag
+1206	Lucid Hard Glass Block
+1207	Hard Glass
+1208	Hard Glass
+1209	Hard Glass
+1210	Hard Glass
+1211	Hard Glass
+1212	Hard Glass
+1213	Hard Glass
+1214	Hard Glass
+1215	Hard Glass
+1216	Hard Glass
+1217	Hard Glass
+1218	Hard Glass
+1219	Hard Glass
+1220	Hard Glass
+1221	Hard Glass
+1222	Hard Glass
+1223	Shell Bed
+1224	Shell Sofa
+1225	Shell Table
+1226	Shell Chair
+1227	Coral Door
+1228	Shell Door
+1229	Coral Window
+1230	Shell Window
+1231	Ocean Cabinet
+1232	Ocean Screen
+1233	Shell Stair
+1234	Ocean Wardrobe
+1235	Ocean Floor Lamp
+1236	Ocean Chandelier
+1237	Shell Table Lamp
+1238	Large Ocean Pot
+1239	Coral Stockade
+1240	Coral Gate
+1241	Shell Stockade
+1242	Shell Gate
+1243	Shell Wind Chime
+1244	Horas Rock Cantboard
+1245	Bamboo Cantboard
+1246	Carmine Cantboard
+1247	Cement Brick Cantboard
+1248	Sulfur Brick Cantboard
+1249	Stone Cantboard
+1250	Fine Brick Cantboard
+1251	Titanium Cantboard
+1252	Brass Cantboard
+1253	Mica Cantboard
+1254	Mithril Cantboard
+1255	Flamo Cantboard
+1256	Citrine Cantboard
+1257	Cinerous Cantboard
+1258	Crimson Cantboard
+1259	Sunset Orange Cantboard
+1260	Begonia Red Cantboard
+1261	Ivory Cantboard
+1262	Dark Orange Cantboard
+1263	Cantboard
+1264	Yellow Brick Cantboard
+1265	Mn Block Cantboard
+1266	Coconut Tree Log
+1267	Horas Rock Cantboard (Thin)
+1268	Horas Rock Cantboard (Large/Thin)
+1269	Bamboo Cantboard (Thin)
+1270	Bamboo Cantboard (Large/Thin)
+1271	Carmine Cantboard (Thin)
+1272	Carmine Cantboard (Large/Thin)
+1273	Cement Brick Cantboard (Thin)
+1274	Cement Brick Cantboard (Large/Thin)
+1275	Sulfur Brick Cantboard (Thin)
+1276	Sulfur Brick Cantboard (Large/Thin)
+1277	Stone Cantboard (Thin)
+1278	Stone Cantboard (Large/Thin)
+1279	Fine Brick Cantboard (Thin)
+1280	Fine Brick Cantboard (Large/Thin)
+1281	Titanium Cantboard (Thin)
+1282	Titanium Cantboard (Large/Thin)
+1283	Brass Cantboard (Thin)
+1284	Brass Cantboard (Large/Thin)
+1285	Mica Cantboard (Thin)
+1286	Mica Cantboard (Large/Thin)
+1287	Mithril Cantboard (Thin)
+1288	Mithril Cantboard (Large/Thin)
+1289	Flamo Cantboard (Thin)
+1290	Flamo Cantboard (Large/Thin)
+1291	Citrine Cantboard (Thin)
+1292	Citrine Cantboard (Large/Thin)
+1293	Cinerous Cantboard (Thin)
+1294	Cinerous Cantboard (Large/Thin)
+1295	Crimson Cantboard (Thin)
+1296	Crimson Cantboard (Large/Thin)
+1297	Sunset Orange Cantboard (Thin)
+1298	Sunset Orange Cantboard (Large/Thin)
+1299	Begonia Red Cantboard (Thin)
+1300	Begonia Red Cantboard (Large/Thin)
+1301	Ivory Cantboard (Thin)
+1302	Ivory Cantboard (Large/Thin)
+1303	Dark Orange Cantboard (Thin)
+1304	Dark Orange Cantboard (Large/Thin)
+1305	Cantboard (Thin)
+1306	Cantboard (Large/Thin)
+1307	Yellow Brick Cantboard (Thin)
+1308	Yellow Brick Cantboard (Large/Thin)
+1309	Mn Block Cantboard (Thin)
+1310	Mn Block Cantboard (Large/Thin)
+1311	Horas Rock Cantboard (Vertical/Thin)
+1312	Horas Rock Cantboard (Vertical/Large/Thin)
+1313	Bamboo Cantboard (Vertical/Thin)
+1314	Bamboo Cantboard (Vertical/Large/Thin)
+1315	Carmine Cantboard (Vertical/Thin)
+1316	Carmine Cantboard (Vertical/Large/Thin)
+1317	Cement Brick Cantboard (Vertical/Thin)
+1318	Cement Brick Cantboard (Vertical/Large/Thin)
+1319	Sulfur Brick Cantboard (Vertical/Thin)
+1320	Sulfur Brick Cantboard (Vertical/Large/Thin)
+1321	Stone Cantboard (Vertical/Thin)
+1322	Stone Cantboard (Vertical/Large/Thin)
+1323	Fine Brick Cantboard (Vertical/Thin)
+1324	Fine Brick Cantboard (Vertical/Large/Thin)
+1325	Titanium Cantboard (Vertical/Thin)
+1326	Titanium Cantboard (Vertical/Large/Thin)
+1327	Brass Cantboard (Vertical/Thin)
+1328	Brass Cantboard (Vertical/Large/Thin)
+1329	Mica Cantboard (Vertical/Thin)
+1330	Mica Cantboard (Vertical/Large/Thin)
+1331	Mithril Cantboard (Vertical/Thin)
+1332	Mithril Cantboard (Vertical/Large/Thin)
+1333	Flamo Cantboard (Vertical/Thin)
+1334	Flamo Cantboard (Vertical/Large/Thin)
+1335	Citrine Cantboard (Vertical/Thin)
+1336	Citrine Cantboard (Vertical/Large/Thin)
+1337	Cinerous Cantboard (Vertical/Thin)
+1338	Cinerous Cantboard (Vertical/Large/Thin)
+1339	Crimson Cantboard (Vertical/Thin)
+1340	Crimson Cantboard (Vertical/Large/Thin)
+1341	Sunset Orange Cantboard (Vertical/Thin)
+1342	Sunset Orange Cantboard (Vertical/Large/Thin)
+1343	Begonia Red Cantboard (Vertical/Thin)
+1344	Begonia Red Cantboard (Vertical/Large/Thin)
+1345	Ivory Cantboard (Vertical/Thin)
+1346	Ivory Cantboard (Vertical/Large/Thin)
+1347	Dark Orange Cantboard (Vertical/Thin)
+1348	Dark Orange Cantboard (Vertical/Large/Thin)
+1349	Cantboard (Vertical/Thin)
+1350	Cantboard (Vertical/Large/Thin)
+1351	Yellow Brick Cantboard (Vertical/Thin)
+1352	Yellow Brick Cantboard (Vertical/Large/Thin)
+1353	Mn Block Cantboard (Vertical/Thin)
+1354	Mn Block Cantboard (Vertical/Large/Thin)
+1355	Horas Rock Riser
+1356	Bamboo Riser
+1357	Carmine Riser
+1358	Cement Brick Riser
+1359	Sulfur Brick Riser
+1360	Stone Riser
+1361	Fine Brick Riser
+1362	Titanium Riser
+1363	Brass Riser
+1364	Mica Riser
+1365	Mithril Riser
+1366	Flamo Riser
+1367	Citrine Riser
+1368	Cinerous Riser
+1369	Crimson Riser
+1370	Sunset Orange Riser
+1371	Begonia Red Riser
+1372	Ivory Riser
+1373	Dark Orange Riser
+1374	Riser
+1375	Yellow Brick Riser
+1376	Mn Block Riser
+1377	Ocean Floor Lamp
+1378	Ocean Chandelier
+1379	Shell Table Lamp
+1380	Hoary Wooden Board
+1381	Hoary Stairs
+1382	Hoary Lamina
+1383	Hoary Cantboard
+1384	Hoary Cantboard (Thin)
+1385	Hoary Cantboard (Large/Thin)
+1386	Hoary Cantboard (Vertical/Thin)
+1387	Hoary Cantboard (Vertical/Large/Thin)
+1388	Hoary Riser
+1389	Devilfall Spoils
+1400	Music Box
+1401	Sky Scenery Set
+1402	Gravity Machine
+1403	Weather Controller
+1404	Garden Crafting Table
+1405	Pet Home
+1406	Simple Stove
+1407	Home Air Wall
+1451	Honor Frame
+1452	Sunflower
+1453	Red Agave
+1454	Dracaena Flower
+1455	Wild Rose
+1456	Feverfew
+1457	Tea Tree
+1458	Banana Tree
+1459	Giant Scaly Fruit
+1460	Mango Tree
+1461	Pear Tree
+1462	Orange Tree
+1463	Peach Tree
+1464	Rice
+1465	Corn
+1466	Sweetpotato
+1467	Pumpkin
+1468	Sugar Cane
+1469	Full Honeycomb
+1470	Chilli Tree
+1471	Cotton Tree
+1472	Fruit Tree
+1473	Larch
+1474	Poplar
+1475	Redwood
+1476	Phoebe
+1477	Walnut Tree
+1478	Small Mushroom
+1479	Small Red Mushroom
+1480	Coffee Tree
+1481	Redwood Fruit Tree
+1482	Oxy Tree
+1483	Orange Agave
+1484	Grey Agave
+1485	Pink Agave
+1486	Carrot
+1493	Sunflower (Seedling)
+1494	Red Agave (Seedling)
+1495	Orange Agave (Seedling)
+1496	Grey Agave (Seedling)
+1497	Pink Agave (Seedling)
+1498	Dracaena Flower (Seedling)
+1499	Wild Rose (Seedling)
+1500	Feverfew (Seedling)
+1501	Giant Scaly Fruit (Seedling)
+1502	Pumpkin (Seedling)
+1503	Fruitwood Sapling
+1504	Larch Sapling
+1505	Poplar Sapling
+1506	Walnut Sapling
+1507	Populus
+1508	Populus Sapling
+1509	Aloe
+1510	Peanut
+1511	Barley
+1512	Sesame
+1513	Lettuce
+1514	Beetroot
+1515	Tomato
+1516	Sorghum
+1517	Kale
+1518	Corn
+1519	Green Pepper
+1520	Tiny Earthstar
+1521	Carrot
+1522	Broccoli
+1523	Chinese Chives
+1524	Jujube
+1525	Carrot
+1526	Rapeseed Flower
+1527	Tibetan barley
+1528	Coconut Tree
+1529	Raspberry
+1530	Canistel
+1531	Red Sorghum
+1532	Round Pepper
+1533	Pea
+1534	Blueberry
+1535	Strawberry
+1536	Pineapple
+1537	Grape
+1538	Cherry
+1539	Lingzhi
+1540	Dragon Fruit
+1541	Colorful Pepper
+1542	Rhodotus
+1543	Ginseng
+1550	Simple Bed
+1551	Simple Sofa
+1552	Simple Desk
+1553	Simple Dining Table
+1554	Simple Coffee Table
+1555	Simple Sink
+1556	Simple Chair
+1557	Simple Toilet
+1558	Simple Bathtub
+1559	Simple Wardrobe
+1560	Simple Cabinet
+1561	Simple Small Cabinet
+1562	Simple Wall Units
+1563	Simple Screen
+1564	Simple Lamp
+1565	Simple Chandelier
+1566	Simple Wall Lamp
+1567	Simple Door
+1568	Simple Window
+1569	Simple Stair
+1570	Simple Wall Brick
+1571	Simple Brick
+1572	Simple Half-brick
+1573	Simple Fence
+1574	Chinese Bed
+1575	Chinese Sofa
+1576	Chinese Desk
+1577	Chinese Dining Table
+1578	Chinese Coffee Table
+1579	Chinese Sink
+1580	Chinese Chair
+1581	Chinese Toilet
+1582	Chinese Bathtub
+1583	Chinese Wardrobe
+1584	Chinese Cabinet
+1585	Chinese Small Cabinet
+1586	Chinese Wall Units
+1587	Chinese Screen
+1588	Chinese Lamp
+1589	Chinese Chandelier
+1590	Chinese Wall Lamp
+1591	Chinese Door
+1592	Chinese Window
+1593	Chinese Stair
+1594	Chinese Wall Brick
+1595	Chinese Brick
+1596	Chinese Half-brick
+1597	Chinese Fence
+1598	Modern Bed
+1599	Modern Sofa
+1600	Modern Desk
+1601	Modern Dining Table
+1602	Modern Coffee Table
+1603	Modern Sink
+1604	Modern Chair
+1605	Modern Toilet
+1606	Modern Bathtub
+1607	Modern Wardrobe
+1608	Modern Cabinet
+1609	Modern Small Cabinet
+1610	Modern Wall Units
+1611	Modern Screen
+1612	Modern Lamp
+1613	Modern Chandelier
+1614	Modern Wall Lamp
+1615	Modern Door
+1616	Modern Window
+1617	Modern Stair
+1618	Modern Wall Brick
+1619	Modern Brick
+1620	Modern Half-brick
+1621	Modern Fence
+1622	Fairytale Bed
+1623	Fairytale Sofa
+1624	Fairytale Desk
+1625	Fairytale Dining Table
+1626	Fairytale Coffee Table
+1627	Fairytale Sink
+1628	Fairytale Chair
+1629	Fairytale Toilet
+1630	Fairytale Bathtub
+1631	Fairytale Wardrobe
+1632	Fairytale Cabinet
+1633	Fairytale Small Cabinet
+1634	Fairytale Wall Units
+1635	Fairytale Screen
+1636	Fairytale Lamp
+1637	Fairytale Chandelier
+1638	Fairytale Wall Lamp
+1639	Fairytale Door
+1640	Fairytale Window
+1641	Fairytale Stair
+1642	Fairytale Wall Brick
+1643	Fairytale Brick
+1644	Fairytale Half-brick
+1645	Fairytale Fence
+1646	Sci-fi Bed
+1647	Sci-fi Sofa
+1648	Sci-fi Desk
+1649	Sci-fi Dining Table
+1650	Sci-fi Coffee Table
+1651	Sci-fi Sink
+1652	Sci-fi Chair
+1653	Sci-fi Toilet
+1654	Sci-fi Bathtub
+1655	Sci-fi Wardrobe
+1656	Sci-fi Cabinet
+1657	Sci-fi Small Cabinet
+1658	Sci-fi Wall Units
+1659	Sci-fi Screen
+1660	Sci-fi Lamp
+1661	Sci-fi Chandelier
+1662	Sci-fi Wall Lamp
+1663	Sci-fi Door
+1664	Sci-fi Window
+1665	Sci-fi Stair
+1666	Sci-fi Wall Brick
+1667	Sci-fi Brick
+1668	Sci-fi Half-brick
+1669	Sci-fi Fence
+1670	Pine Bonsai
+1671	Verdant Bonsai
+1672	Velvet Carpet
+1673	Landscape Painting
+1674	Abstract Painting
+1675	Chinese Knot Ornament
+1676	Planetary Ornament
+1677	Simple Bookcase
+1678	White Fridge
+1679	Silver Fridge
+1680	Black Fridge
+1681	White Rice Cooker
+1682	Silver Rice Cooker
+1683	Black Rice Cooker
+1684	White Oven
+1685	Silver Oven
+1686	Black Oven
+1687	White Stove
+1688	Silver Stove
+1689	Black Stove
+1690	Succulent Bonsai
+1691	European Bed
+1692	European Sofa
+1693	European Desk
+1694	European Dining Table
+1695	European Coffee Table
+1696	European Sink
+1697	European Chair
+1698	European Toilet
+1699	European Bathtub
+1700	European Wardrobe
+1701	European Cabinet
+1702	European Small Cabinet
+1703	European Wall Units
+1704	European Screen
+1705	European Lamp
+1706	European Chandelier
+1707	European Wall Lamp
+1708	European Door
+1709	European Window
+1710	European Stair
+1711	European Wall Brick
+1712	European Brick
+1713	European Half-brick
+1714	European Fence
+1715	Populus Wood
+1716	Populus Board
+1717	Populus Leaves
+1718	Populus Lamina
+1719	Populus Stair
+1720	Populus Coffee Table
+1721	Populus Stool
+1722	Exotic Bed
+1723	Exotic Sofa
+1724	Exotic Desk
+1725	Exotic Dining Table
+1726	Exotic Coffee Table
+1727	Exotic Sink
+1728	Exotic Chair
+1729	Exotic Toilet
+1730	Exotic Bathtub
+1731	Exotic Wardrobe
+1732	Exotic Cabinet
+1733	Exotic Small Cabinet
+1734	Exotic Wall Units
+1735	Exotic Screen
+1736	Exotic Lamp
+1737	Exotic Chandelier
+1738	Exotic Wall Lamp
+1739	Exotic Door
+1740	Exotic Window
+1741	Exotic Stair
+1742	Exotic Wall Brick
+1743	Exotic Brick
+1744	Exotic Half-brick
+1745	Exotic Fence
+1746	Exotic Carpet
+1747	Camel Sculpture
+1748	Dunhuang Cave
+1749	Flying Apsaras Sculpture
+1750	Lotus Mural
+1751	Fairy Mural
+1752	Deer King Mural
+1753	Feed Trough
+1754	Colorful Clouds
+1755	Stone Pillar
+1756	Pillar Top
+1757	Curd
+1758	Black Curd
+1759	Tasty Maker Stove
+1760	Magic Bed
+1761	Magic Sofa
+1762	Magic Desk
+1763	Magic Dining Table
+1764	Magic Coffee Table
+1765	Magic Sink
+1766	Magic Chair
+1767	Magic Toilet
+1768	Magic Bathtub
+1769	Magic Wardrobe
+1770	Magic Cabinet
+1771	Magic Small Cabinet
+1772	Magic Wall Units
+1773	Magic Screen
+1774	Magic Lamp
+1775	Magic Chandelier
+1776	Magic Wall Lamp
+1777	Magic Door
+1778	Magic Window
+1779	Magic Stair
+1780	Magic Wall Brick
+1781	Magic Brick
+1782	Magic Half-brick
+1783	Magic Fence
+1784	Magic Carpet
+1785	Magic Sculpture
+1796	Blueberry Grass Block
+1797	Blueberry Soil Block
+1798	Fluorescent Grass
+1799	rich soil
+1800	Evil Dragon Egg
+1801	Moon Egg
+1802	Sleigh Egg
+1811	Chinese Chair
+1812	Chinese Table
+1813	Chinese Wooden Chair
+1814	Chinese Stove
+1815	Chinese Cabinet
+1873	飞天小猪坐骑蛋
+1900	Cotton Block
+1901	Cotton Block
+1902	Cotton Block
+1903	Cotton Block
+1904	Cotton Block
+1905	Cotton Block
+1906	Cotton Block
+1907	Cotton Block
+1908	Cotton Block
+1909	Cotton Block
+1910	Cotton Block
+1911	Cotton Block
+1912	Cotton Felt
+1913	Cotton Felt
+1914	Cotton Felt
+1915	Cotton Felt
+1916	Cotton Felt
+1917	Cotton Felt
+1918	Cotton Felt
+1919	Cotton Felt
+1920	Cotton Felt
+1921	Cotton Felt
+1922	Cotton Felt
+1923	Cotton Felt
+1924	Glass
+1925	Glass
+1926	Glass
+1927	Glass
+1928	Glass
+1929	Glass
+1930	Glass
+1931	Glass
+1932	Glass
+1933	Glass
+1934	Glass
+1935	Glass
+1936	Glass Pane
+1937	Glass Pane
+1938	Glass Pane
+1939	Glass Pane
+1940	Glass Pane
+1941	Glass Pane
+1942	Glass Pane
+1943	Glass Pane
+1944	Glass Pane
+1945	Glass Pane
+1946	Glass Pane
+1947	Glass Pane
+1948	Hard Glass
+1949	Hard Glass
+1950	Hard Glass
+1951	Hard Glass
+1952	Hard Glass
+1953	Hard Glass
+1954	Hard Glass
+1955	Hard Glass
+1956	Hard Glass
+1957	Hard Glass
+1958	Hard Glass
+1959	Hard Glass
+1960	Colored Cement Block
+1961	Colored Cement Block
+1962	Colored Cement Block
+1963	Colored Cement Block
+1964	Colored Cement Block
+1965	Colored Cement Block
+1966	Colored Cement Block
+1967	Colored Cement Block
+1968	Colored Cement Block
+1969	Colored Cement Block
+1970	Colored Cement Block
+1971	Colored Cement Block
+1972	Old Mithril Block
+1973	Old Mithril Block
+1974	Old Mithril Block
+1975	Old Mithril Block
+1976	Old Mithril Block
+1977	Old Mithril Block
+1978	Old Mithril Block
+1979	Old Mithril Block
+1980	Old Mithril Block
+1981	Old Mithril Block
+1982	Old Mithril Block
+1983	Old Mithril Block
+1990	Wireless Pedal
+1991	Parallel Converter
+1992	Pudding
+2000	Miniature Block
+10000	Mini Bean
+10001	EXP
+10002	Mini Coin
+10003	Mini Treasure Box
+10004	Fairy Medal
+10005	Small Grass Block
+10006	Bright Iron Block
+10007	Pure Gold Block
+10008	Tungsten Block
+10009	Mini Point
+10010	Dreamer Code
+10011	Fruit Ticket
+10012	Event Ticket
+10013	Home Coins
+10014	Season Pass
+10015	Season Pass Combo Pack
+10016	Upgrade Pack
+10017	Mini Christmas Socks
+10018	Mini Bell
+10019	Mini Golden Egg
+10020	Evaluation Chest
+10021	Mini Easter Egg
+10022	Mini Sakura
+10023	Season Pass EXP Card
+10024	Star Teleport Ticket
+10025	A Stack of Star Teleport Tickets
+10026	Season Pass Points
+10027	Mini Membership 1-day Trial
+10028	Mini Membership 3-days Trial
+10029	Mini Membership 7-days Trial
+10030	Mini Membership 15-days Trial
+10031	Ordinary Mount Universal Shard
+10032	Advanced Mount Universal Shard
+10033	Mini Large Member Monthly Card
+10034	Mini Big Member Season Pass
+10035	Mini Membership Semi-Annual Card
+10036	Mini Big Membership Annual Card
+10040	Star Code
+10041	Dreamer Skin Coupon
+10042	Star Skin Coupon
+10043	Skill Shard
+10044	Premium Coin Card
+10045	Special Offer Mini Monthly Pass
+10046	Mini Point
+10047	Super Star
+10048	Redemption Coupon
+10049	Advanced Season Pass EXP Card
+10051	Stamina Potion
+10052	Little monkey
+10053	Eva&#039;s Blessing
+10054	Bonus Lottery Ticket
+10057	Dodo Bobo&#039;s Double Blessing
+10058	Star of Radiance
+10059	Season Pass Skin Giftbox
+10060	Season Pass Weapon Giftbox
+10112	Mechanical Capsule
+10113	Pass
+10115	Action Cookies
+10116	Area
+10117	Location
+10118	Display Panel
+10124	生物蛋模板
+10500	Terrain Editor
+10501	Miniature Combination Device
+11000	Empty-handed
+11001	Brass Axe
+11002	Stone Axe
+11003	Mithril Axe
+11004	Titanium Axe
+11005	Chainsaw
+11006	Twigs
+11007	Leaves
+11008	unavailable in this version
+11009	unavailable in this version
+11010	unavailable in this version
+11011	Brass Pickaxe
+11012	Stone Pickaxe
+11013	Mithril Pickaxe
+11014	Titanium Pickaxe
+11015	Tungsten Drill
+11016	Horas Copper Drill
+11017	unavailable in this version
+11018	unavailable in this version
+11019	unavailable in this version
+11020	unavailable in this version
+11021	Brass Shovel
+11022	Stone Shovel
+11023	Mithril Shovel
+11024	Titanium Shovel
+11025	Tungsten Shovel
+11026	unavailable in this version
+11027	unavailable in this version
+11028	unavailable in this version
+11029	unavailable in this version
+11030	unavailable in this version
+11031	Brass Rake
+11032	Stone Rake
+11033	Mithril Rake
+11034	Titanium Rake
+11035	Tungsten Rake
+11036	unavailable in this version
+11037	unavailable in this version
+11038	unavailable in this version
+11039	unavailable in this version
+11040	unavailable in this version
+11041	Head
+11042	Chest
+11043	Legs
+11044	Feet
+11045	Back Decoration
+11046	unavailable in this version
+11047	unavailable in this version
+11048	Wooden Bucket
+11049	Bottled Water
+11050	Mithril Bucket
+11051	Bottled Water
+11052	Lava Crucible
+11053	Honey Mithril Bucket
+11055	Igniter
+11056	Mithril Scissors
+11057	Rope
+11058	Fishing Net
+11059	Candy Cane Pickaxe
+11060	Lollipop Axe
+11061	Large Sword
+11062	Large Shovel
+11063	Fairy Wand
+11064	Crucible
+11065	Titanium Bucket
+11066	Honey Titanium Bucket
+11067	Red Feather
+11068	Dodo Claw
+11069	Chicken Beak
+11070	Wrench
+11071	Custom View
+11072	Blueprint-Rocket Tech
+11073	Horas Copper
+11074	Purple Fluorite
+11075	Regen Rune
+11076	Illu Rune
+11077	Rock Shard
+11078	Ice Crystal
+11079	Shard of Bulli
+11080	Gravity Crystal
+11081	Blueprint-Sequence Tech
+11082	Blueprint-Minish Tech
+11083	Blueprint-Mutation
+11084	Blueprint-Oxygen Pump
+11085	Blueprint-Gas Tank (Empty)
+11086	Blueprint-Plant Medium
+11087	Blueprint-Horas Copper Drill
+11088	Blueprint-Hook Shot
+11089	Blueprint-Oxygen Backpack
+11090	Blueprint-Regen Rune
+11091	Blueprint-Illu Rune
+11092	Blueprint-Cinerous Set
+11093	Blueprint-Cinerous Lamina
+11094	Blueprint-Cinerous Fence
+11095	Horas Cloud Bottle
+11096	Spaceship Fuel
+11097	Blueprint-Wireless Signal Device
+11098	Blueprint-Signal Receiver
+11099	Mechanical Fuel
+11100	Handheld Editor
+11101	Connector
+11102	Blueprint-Celesthium Oscillator
+11103	11103-11199是预留给建筑图纸的
+11104	Blueprint-Icefield Residential Building 1
+11105	Blueprint-Icefield Residential Building 2
+11106	Blueprint-Icefield Residential Building 3
+11107	Blueprint-Icefield Residential Building 4
+11108	Blueprint-Icefield Residential Building 5
+11109	Blueprint-Icefield Residential Building 6
+11110	Blueprint-Icefield Residential Building 7
+11111	Blueprint-Wooden Igloo
+11112	Blueprint-Archer Tower
+11113	Blueprint-Igloo
+11114	企鹅窝
+11200	Cement
+11201	Flammable Ice
+11202	Charcoal
+11203	Tungsten
+11204	Amber
+11205	Star Station Energy Shard
+11206	Dawn Powder
+11207	Flamo
+11208	Flamo Particle
+11209	Mithril
+11210	Mica
+11211	Kindling
+11213	Cement Brick
+11214	Sulfur Brick
+11215	Lava Horn
+11216	Chaos Horn
+11217	Life Crystal
+11218	Rock Crystal
+11219	Chaos Crystal
+11220	Gem Crystal
+11221	Dragon Bone
+11222	Heart of Lava Gem
+11223	A Bundle of Corns
+11224	A Stack of Leather
+11225	Flamas Portal Shard
+11226	Plant Fibre
+11227	Rope
+11228	Corolla
+11229	Skewered Bamboo Shoots
+11230	Chikuchiku Bangbang Hammer
+11231	Polymer Gloves
+11232	Devilfall Mask
+11233	Ancient Horn
+11302	Animal Bone
+11303	Fine Feather
+11304	Flint
+11305	Quartz Sand
+11306	Unstable Compound
+11307	Soft Leather
+11308	Game version is too low
+11309	Soft Leather Cloth
+11310	Tar
+11311	Fertilizer
+11312	Hollow Bamboo
+11313	Stinger
+11314	Simple Bowl
+11315	Eye of Flamas
+11316	Game version is too low
+11317	Game version is too low
+11318	Fluorescent Crystal
+11319	Gill
+11320	Small Glass Bottle
+11321	Giant Scaly Fruit Juice
+11322	Paper
+11323	Timber
+11324	Detector
+11326	Bottled Fructose Syrup
+11327	Fortune Ball
+11328	Game version is too low
+11329	Brass
+11330	Titanium Alloy
+11331	Star Station Energy Core
+11332	Brass Rod
+11333	Triangle Portal Shard
+11334	Smart Chip
+11335	Upgrade Part A-Type
+11400	Corn Seed
+11401	Giant Buru Seed
+11402	Giant Scaly Fruit Seed
+11403	Redwood Fruit
+11404	Rice Seed
+11405	Cherry Seed
+11406	Pine Seed
+11407	Arbor Seed
+11408	Genwood Seed
+11409	Peach Seed
+11410	Poplar Seed
+11411	Walnut Seed
+11412	Redwood Seed
+11413	Phoebe Seed
+11418	unavailable in this version
+11419	Cotton Seed
+11420	Cactus Seed
+11421	Populus Seed
+11422	Giant Coconut Leaf
+11423	Giant Mutated Coconut Leaf
+11424	Coconut Shell
+11500	Ivory Dye Bottle
+11501	Cinnabar Dye Bottle
+11502	Carmine Dye Bottle
+11503	Azure Blue Dye Bottle
+11504	Goose Yellow Dye Bottle
+11505	Turquoise Dye Bottle
+11506	Begonia Red Dye Bottle
+11507	Cinerous Dye Bottle
+11508	Hoary Dye Bottle
+11509	Virid Dye Bottle
+11510	Violaceous Dye Bottle
+11511	Sardonyx
+11512	Crimson Dye Bottle
+11513	Emerald Dye Bottle
+11514	Scarlet Dye Bottle
+11515	Coal Black Dye Bottle
+11516	Game version is too low
+11517	Game version is too low
+11518	Game version is too low
+11519	Game version is too low
+11520	Game version is too low
+11521	Game version is too low
+11522	Game version is too low
+11523	Game version is too low
+11524	Game version is too low
+11525	Game version is too low
+11526	Game version is too low
+11527	Game version is too low
+11528	Game version is too low
+11529	Game version is too low
+11530	Game version is too low
+11531	Game version is too low
+11532	Sapphire Blue Dye Bottle
+11533	Titanium Powder
+11534	Grass Feed
+11535	Meat Feed
+11536	Sunset Orange Dye Bottle
+11537	Dark Orange Dye Bottle
+11538	Bluish Purple Dye Bottle
+11539	Willow Green Dye Bottle
+11540	Citrine Dye Bottle
+11541	Cinnamon Dye Bottle
+11542	Lilac Dye Bottle
+11543	Amber Dye Bottle
+11544	Cyan Blue Dye Bottle
+11545	Caramel Dye Bottle
+11546	Dark Purple Dye Bottle
+11547	Bamboo Green Dye Bottle
+11551	Destroy Block
+11552	Place Block
+11553	Replace Block
+11554	Attack
+11555	Launch
+11556	Summon
+11557	Buff
+11558	Projectile
+11559	Heal
+11560	Destroy block (Throw)
+11561	Substitute Block (Throw)
+11562	Place Block (Throw)
+11563	Attack (Throw)
+11564	Launch (Throw)
+11565	Summon (Throw)
+11566	Buff (Throw)
+11567	Projectile (Throw)
+11568	Heal (Throw)
+11569	Wooden Staff
+11570	Ordinary Crystal Core
+11571	Fiery Crystal Core
+11572	Lightning Crystal Core
+11573	Poison Crystal Core
+11574	Revival Crystal Core
+11575	Summoning Crystal Core
+11576	Frost Crystal Core
+11580	Ordinary Staff
+11581	Fiery Staff
+11582	Lightning Staff
+11583	Poison Staff
+11584	Revival Staff
+11585	Summoning Staff
+11586	Ordinary Orb
+11587	Fiery Orb
+11588	Lightning Orb
+11589	Poison Orb
+11590	Revival Orb
+11591	Wings of Quetzalcoatl
+11592	Boomerang
+11593	Sorcery Bone
+11594	Feather of Quetzalcoatl
+11595	Moss Ball
+11596	Stardust
+11597	Eye of Rainforest
+11598	Ash
+11599	Banana
+11600	Starry Banana
+11601	Rainforest Core Shard
+11602	Leopard Skin
+11603	Beginner Attack Rune
+11604	Medium Attack Rune
+11605	Advanced Attack Rune
+11606	Beginner Defense Rune
+11607	Medium Defense Rune
+11608	Advanced Defense Rune
+11609	Beginner Efficiency Rune
+11610	Medium Efficiency Rune
+11611	Advanced Efficiency Rune
+11612	Universal Activation Stone
+11613	Stone Creation Hammer
+11614	Brass Creation Hammer
+11615	Mithril Creation Hammer
+11616	Titanium Creation Hammer
+11617	Empty Shower
+11618	Beginner Attack Rune Gem
+11619	Medium Attack Rune Gem
+11620	Advanced Attack Rune Gem
+11621	Beginner Defense Rune Gem
+11622	Medium Defense Rune Gem
+11623	Advanced Defense Rune Gem
+11624	Beginner Efficiency Rune Gem
+11625	Medium Efficiency Rune Gem
+11626	Advanced Efficiency Rune Gem
+11627	Stone
+11628	Shower
+11629	Summon the ball
+11630	Poison Bottle
+11631	Antidote Powder Pack
+11632	Hard Scorpion Shell
+11633	Scorpion Tail
+11634	Poison Sac
+11635	Element Core Shard
+11636	Broken Element Core
+11637	Liquefaction Agent
+11638	Sonic Boom Jar
+11639	Sandproof Cloak
+11640	Guard&#039;s Heart
+11641	Ocean Spirit Transform Stone
+11642	Diving Mask
+11643	Diving Suit
+11644	Diving Fins
+11645	Advanced Diving Mask
+11646	Advanced Diving Suit
+11647	Advanced Diving Fins
+11648	Lightning Core
+11649	Water Cannon
+11650	Corolla of Luck
+11651	Balloon
+11652	Ocean Spirit Guard-Water Column
+11653	Version outdated
+11654	Equinox Pineapple
+11655	Pearl
+11656	Unused Glow Stick
+11657	Lighted Glow Stick
+11658	Used Glow Stick
+11659	Sundried Gugufish
+11660	Large Coconut (Dropping)
+11661	Mutated Large Coconut (Dropping)
+11662	Seahorse Bubble
+11663	Jellyfish Lightning Special Effect
+11664	Celesthium Crystal
+11665	Ice Puffshroom Spores
+11666	Ice Fern Seed
+11667	Ice Staff
+11668	Frigid Staff
+11669	Ice Orb
+11670	Frigid Orb
+11671	Ice Spike Circle
+11672	Ice Mist Bottle
+11673	Solid Ice Spikes (Dropping)
+11674	Crispy Ice Spikes (Dropping)
+11800	Mutation Scroll
+11801	Fire Scroll
+11802	Chaos Scroll
+11803	Book
+11804	Used Paper
+11805	Blank Scroll
+11806	Leather Scroll
+11807	Enchanted Scroll
+11809	Command Chip
+11810	Mount Saddle
+11811	BGM 1
+11812	BGM 2
+11813	BGM 3
+11814	BGM 4
+11815	BGM 5
+11816	BGM 6
+11817	BGM 7
+11818	BGM 8
+11819	BGM 9
+11820	BGM 10
+11821	BGM 11
+11822	BGM 12
+11823	A Bag of Sand Soil
+11824	Frostfire Ore
+11825	Shrub Seed
+11900	Erhu
+11901	Festival Moon Cake
+11902	Flower Lantern Shard
+11904	Festival Flower Ball
+11905	Guzheng
+11906	Suona
+11907	Lute
+11908	Flute
+11909	Drum

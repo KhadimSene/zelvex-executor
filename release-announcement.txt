@@ -1,0 +1,19 @@
+ZELVEX v4.0 - RELEASING TOMORROW
+
+The new Zelvex executor drops tomorrow. Here is what it can do:
+
+- Full cheat menu - god mode, fly, speed, teleports, stats, vision,
+  auto-click, spectator mode and more
+- Item Giver with the COMPLETE item library (2100+ items) and
+  real item icons - search anything, set the amount, hit give
+- Crash Host cheat - spam item 1105 to take down the host
+- Lua executor with loops, variables and while-conditions -
+  write your own scripts and run them with one click
+- PvP suite: killAura, remote killPlayer, aimbot, mountAll, mineAll
+- Live console so you see exactly what your scripts are doing
+- Professional black/white/blue UI - Synapse-class executor look
+  with script tabs, load/save, examples and history
+
+Made with love by nyxdev_
+
+See you tomorrow!

@@ -1,0 +1,7 @@
+# ninja log v7
+12	10134	8083362449224456	CMakeFiles/lua_dll.dir/lua_dll.cpp.obj	cbd9524a65de9dbe
+10141	10549	8083362554374423	bin/liblua_dll.dll	a0ceac33c7a19ab5
+10141	10549	8083362554374423	liblua_dll.dll.a	a0ceac33c7a19ab5
+17	10003	8083363646393895	CMakeFiles/lua_dll.dir/lua_dll.cpp.obj	cbd9524a65de9dbe
+10004	10372	8083363749639075	bin/liblua_dll.dll	a0ceac33c7a19ab5
+10004	10372	8083363749639075	liblua_dll.dll.a	a0ceac33c7a19ab5

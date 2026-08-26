@@ -1,0 +1,3 @@
+LIBRARY lua_dll
+EXPORTS
+    Initialize @1 NONAME
