@@ -128,6 +128,18 @@ static bool  g_sniffOn = false;
 static BYTE  g_sniffOrig[5] = {};
 static void* g_sniffTramp = nullptr;
 static void* g_sniffLogAddr = nullptr;
+// ---- game-VM bridge (G.*): call the game's own Lua VM (custom 5.1, no lua_pcall) ----
+static void* g_glGetDirector = nullptr;  // SandboxCoreLuaDirector::GetCoreLuaDirector()
+static void* g_glGetState = nullptr;     // SandboxCoreLuaDirector::getLuaState()
+static int   g_glStateWhich = 0;
+static void* g_glLoadString = nullptr;   // luaL_loadstring
+static void* g_glResume = nullptr;       // lua_resume
+static void* g_glGettop = nullptr;
+static void* g_glSettop = nullptr;
+static void* g_glType = nullptr;
+static void* g_glTonumber = nullptr;
+static void* g_glTolstring = nullptr;
+static void* g_glToboolean = nullptr;
 static void* g_newRepairAddr  = nullptr;
 static void* g_discardAddr    = nullptr;
 static void* g_sortPackAddr   = nullptr;
@@ -572,6 +584,41 @@ snprintf(buf, sizeof(buf),
             snprintf(w, sizeof(w), "ResolveNativeApi: WARNING %s=%p NOT in %s", chk[i].n, chk[i].p, chk[i].m);
             Log(w);
         }
+    }
+
+    // Game-VM bridge: game's own Lua (custom 5.1 in liblua.dll) + director.
+    {
+        HMODULE gl = GetModuleHandleA("liblua.dll");
+        if (gl) {
+            g_glLoadString = (void*)GetProcAddress(gl, "luaL_loadstring");
+            g_glResume     = (void*)GetProcAddress(gl, "lua_resume");
+            g_glGettop     = (void*)GetProcAddress(gl, "lua_gettop");
+            g_glSettop     = (void*)GetProcAddress(gl, "lua_settop");
+            g_glType       = (void*)GetProcAddress(gl, "lua_type");
+            g_glTonumber   = (void*)GetProcAddress(gl, "lua_tonumber");
+            g_glTolstring  = (void*)GetProcAddress(gl, "lua_tolstring");
+            g_glToboolean  = (void*)GetProcAddress(gl, "lua_toboolean");
+        }
+        const char* dirNames[] = {
+            "?GetCoreLuaDirector@SandboxCoreLuaDirector@MNSandbox@@SAPAV12@XZ",
+            "?GetCoreLuaDirector@SandboxCoreLuaDirector@@SAPAV12@XZ"
+        };
+        const char* stNames[] = {
+            "?getLuaState@SandboxCoreLuaDirector@MNSandbox@@QAEPAVlua_State@@XZ",
+            "?GetLuaState@SandboxCoreLuaDirector@MNSandbox@@QAEPAVlua_State@@XZ",
+            "?getLuaState@SandboxCoreLuaDirector@@QAEPAVlua_State@@XZ"
+        };
+        for (int i = 0; i < 2 && !g_glGetDirector; i++)
+            g_glGetDirector = ResolveExport(se, &dirNames[i], 1);
+        for (int i = 0; i < 3 && !g_glGetState; i++) {
+            g_glGetState = ResolveExport(se, &stNames[i], 1);
+            if (g_glGetState) g_glStateWhich = i;
+        }
+        char gb[256];
+        snprintf(gb, sizeof(gb),
+            "ResolveNativeApi: gameVM liblua=%p loadstring=%p resume=%p director=%p state=%p",
+            (void*)gl, g_glLoadString, g_glResume, g_glGetDirector, g_glGetState);
+        Log(gb);
     }
 }
 
@@ -4045,6 +4092,138 @@ static int LuaEspScreen(lua_State* L) {
     return 2;
 }
 
+// ---- G.* : game-VM bridge (official dev-wiki API, client-friendly) ----
+// The game runs a custom Lua 5.1 (liblua.dll, no lua_pcall) hosting the
+// documented Player:/World:/Actor:/Chat:... tables. We reach it via
+// SandboxCoreLuaDirector and run code with luaL_loadstring + lua_resume.
+// Everything is guarded: any failure returns nil+errmsg, never crashes.
+// NOTE: the game VM is single-threaded; calls run from our worker thread,
+// so treat G.* as best-effort (same as any external Lua executor). Reads
+// (getAttr/getNickname/...) are safe; writes obey host authority.
+typedef int         (__cdecl *GL_LoadStringFn)(void*, const char*);
+typedef int         (__cdecl *GL_ResumeFn)(void*, int);
+typedef int         (__cdecl *GL_GettopFn)(void*);
+typedef void        (__cdecl *GL_SettopFn)(void*, int);
+typedef int         (__cdecl *GL_TypeFn)(void*, int);
+typedef double      (__cdecl *GL_TonumberFn)(void*, int);
+typedef const char* (__cdecl *GL_TolstringFn)(void*, int, size_t*);
+typedef int         (__cdecl *GL_TobooleanFn)(void*, int);
+typedef void*       (__cdecl *GL_DirectorFn)();
+
+static char g_glErr[256] = {};
+
+static bool GameLuaReady() {
+    return g_glLoadString && g_glResume && g_glGettop && g_glSettop &&
+           g_glType && g_glTonumber && g_glTolstring && g_glToboolean &&
+           g_glGetDirector && g_glGetState;
+}
+
+static void* GameLuaState() {
+    if (!g_glGetDirector || !g_glGetState) return nullptr;
+    void* dir = ((GL_DirectorFn)g_glGetDirector)();
+    if (!dir || !IsReadable(dir, 4)) return nullptr;
+    void* fn = g_glGetState;
+    void* dirArg = dir;
+    __asm__ volatile("call *%%eax" : "+a"(fn), "+c"(dirArg) : : "edx", "memory");
+    void* st = fn;   // eax now holds the return value
+    if (!st || !IsReadable(st, 8)) return nullptr;
+    return st;
+}
+
+// Run `code` on the game VM. On success pushes 1 value (or nil) to OUR L.
+static bool GameExec(const char* code, lua_State* L, int* outPushed) {
+    *outPushed = 0;
+    if (!GameLuaReady()) { snprintf(g_glErr, sizeof(g_glErr), "game VM bridge unresolved (re-attach?)"); return false; }
+    void* GL = GameLuaState();
+    if (!GL) { snprintf(g_glErr, sizeof(g_glErr), "game VM not ready (join a map first)"); return false; }
+    int top = ((GL_GettopFn)g_glGettop)(GL);
+    if (top < 0 || top > 512) { snprintf(g_glErr, sizeof(g_glErr), "game VM busy"); return false; }
+    if (((GL_LoadStringFn)g_glLoadString)(GL, code) != 0) {
+        const char* e = ((GL_TolstringFn)g_glTolstring)(GL, -1, nullptr);
+        snprintf(g_glErr, sizeof(g_glErr), "compile: %.200s", e ? e : "?");
+        ((GL_SettopFn)g_glSettop)(GL, top);
+        return false;
+    }
+    int rc = ((GL_ResumeFn)g_glResume)(GL, 0);
+    if (rc != 0) {
+        const char* e = ((GL_TolstringFn)g_glTolstring)(GL, -1, nullptr);
+        snprintf(g_glErr, sizeof(g_glErr), "runtime: %.200s", e ? e : "?");
+        ((GL_SettopFn)g_glSettop)(GL, top);
+        return false;
+    }
+    int now = ((GL_GettopFn)g_glGettop)(GL);
+    if (now > top) {
+        int t = ((GL_TypeFn)g_glType)(GL, -1);
+        if (t == 3)      lua_pushnumber(L, ((GL_TonumberFn)g_glTonumber)(GL, -1));
+        else if (t == 1) lua_pushboolean(L, ((GL_TobooleanFn)g_glToboolean)(GL, -1));
+        else if (t == 4) {
+            size_t n = 0;
+            const char* s = ((GL_TolstringFn)g_glTolstring)(GL, -1, &n);
+            lua_pushlstring(L, s ? s : "", n);
+        }
+        else lua_pushnil(L);
+        *outPushed = 1;
+    }
+    ((GL_SettopFn)g_glSettop)(GL, top);
+    return true;
+}
+
+static void GameEscape(std::string& out, const char* s) {
+    out += '"';
+    for (const char* p = s; *p; p++) {
+        if (*p == '\\' || *p == '"') { out += '\\'; out += *p; }
+        else if (*p == '\n') out += "\\n";
+        else if (*p == '\r') out += "\\r";
+        else if (*p == '\t') out += "\\t";
+        else out += *p;
+    }
+    out += '"';
+}
+
+// G.call("Player", "getNickname", 0) -> value or nil+err
+static int LuaGCall(lua_State* L) {
+    const char* mod = luaL_checkstring(L, 1);
+    const char* fn  = luaL_checkstring(L, 2);
+    int nargs = lua_gettop(L) - 2;
+    if (nargs < 0) nargs = 0; if (nargs > 8) nargs = 8;
+    if (strchr(mod, '"') || strchr(fn, '"') || strchr(mod, '\n') || strchr(fn, '\n')) {
+        lua_pushnil(L); lua_pushliteral(L, "bad module/func"); return 2;
+    }
+    std::string code = "return ";
+    code += mod; code += ":"; code += fn; code += "(";
+    for (int i = 0; i < nargs; i++) {
+        if (i) code += ",";
+        int t = lua_type(L, 3 + i);
+        if (t == LUA_TNUMBER) { char b[32]; snprintf(b, sizeof(b), "%.14g", lua_tonumber(L, 3 + i)); code += b; }
+        else if (t == LUA_TBOOLEAN) code += lua_toboolean(L, 3 + i) ? "true" : "false";
+        else if (t == LUA_TSTRING) { size_t n = 0; const char* s = lua_tolstring(L, 3 + i, &n); GameEscape(code, s ? s : ""); }
+        else if (t == LUA_TNIL) code += "nil";
+        else { lua_pushnil(L); lua_pushliteral(L, "arg must be number/string/boolean/nil"); return 2; }
+    }
+    code += ")";
+    int pushed = 0;
+    if (!GameExec(code.c_str(), L, &pushed)) { lua_pushnil(L); lua_pushstring(L, g_glErr); return 2; }
+    return pushed;
+}
+
+// G.exec("return Player:getNickname(0)") -> value or nil+err
+static int LuaGExec(lua_State* L) {
+    const char* code = luaL_checkstring(L, 1);
+    int pushed = 0;
+    if (!GameExec(code, L, &pushed)) { lua_pushnil(L); lua_pushstring(L, g_glErr); return 2; }
+    return pushed;
+}
+
+// G.ready() -> bool, detail
+static int LuaGReady(lua_State* L) {
+    bool ok = GameLuaReady() && GameLuaState() != nullptr;
+    lua_pushboolean(L, ok);
+    if (ok) lua_pushliteral(L, "game VM reachable");
+    else if (!GameLuaReady()) lua_pushliteral(L, "unresolved (attach in map?)");
+    else lua_pushliteral(L, "VM not ready (join a map first)");
+    return 2;
+}
+
 struct ApiMap { const char* name; const char* cmd; };
 
 static void PushApiTable(lua_State* L, const ApiMap* m, int count) {
@@ -4175,6 +4354,58 @@ static int LuaPlayersNearest(lua_State* L) {
     lua_pushinteger(L, *(int*)(best + 0x18));          lua_setfield(L, -2, "y");
     lua_pushinteger(L, *(int*)(best + 0x1C));          lua_setfield(L, -2, "z");
     lua_pushinteger(L, *(int*)(best + 0xB0));          lua_setfield(L, -2, "team");
+    return 1;
+}
+
+// Players.looking() -> uid of player under crosshair (closest to screen center via W2S)
+static int LuaPlayersLooking(lua_State* L) {
+    if (!FnOk(g_ptScreenAddr)) { lua_pushnil(L); lua_pushliteral(L, "W2S unresolved"); return 2; }
+    HMODULE mbH = GetModuleHandleA("libMiniBaseGame.dll");
+    if (!mbH || !IsReadable((BYTE*)mbH + 0xB36C, 4)) { lua_pushnil(L); return 1; }
+    BYTE* c1 = *(BYTE**)((BYTE*)mbH + 0xB36C);
+    if (!IsReadable(c1, 0x80) || !IsReadable(c1 + 0x78, 4)) { lua_pushnil(L); return 1; }
+    BYTE* c2 = *(BYTE**)(c1 + 0x78);
+    if (!IsReadable(c2, 0x70) || !IsReadable(c2 + 0x68, 4)) { lua_pushnil(L); return 1; }
+    BYTE* list = *(BYTE**)(c2 + 0x68);
+    uint32_t myUid = ReadRoleId();
+    int dispW = Overlay::DisplayWidth(); int dispH = Overlay::DisplayHeight();
+    if (dispW == 0 || dispH == 0) { dispW = 1920; dispH = 1080; }
+    float cx = dispW * 0.5f, cy = dispH * 0.5f;
+    double bestDist = 80.0 * 80.0; // 80px radius
+    uint32_t bestUid = 0;
+    for (int i = 0; i < 40; i++) {
+        if (!IsReadable((BYTE*)list + i * 4, 4)) continue;
+        BYTE* p = *(BYTE**)((BYTE*)list + i * 4);
+        if (!PlayerEntryValid(p, myUid, false, 1, 64)) continue;
+        uint32_t uid = *(uint32_t*)p;
+        // W2S for this actor
+        BYTE* actor = p; // player entry is the actor pointer
+        float sx = 0, sy = 0, sz = 0;
+        // call getPointToScreen(&sx,&sy,&sz,actor,0) - thiscall
+        __asm__ volatile(
+            "pushl $0\n\t"
+            "pushl %3\n\t"
+            "leal %1, %%eax\n\t"
+            "pushl %%eax\n\t"
+            "leal %2, %%eax\n\t"
+            "pushl %%eax\n\t"
+            "leal %0, %%eax\n\t"
+            "pushl %%eax\n\t"
+            "movl %4, %%ecx\n\t"
+            "call *%5\n\t"
+            "addl $20, %%esp\n\t"
+            : "+m"(sx), "+m"(sy), "+m"(sz)
+            : "r"(actor), "r"(GetPlayer()), "r"(g_ptScreenAddr)
+            : "eax", "ecx", "edx", "memory"
+        );
+        // depth check: assume sz > 0 means in front
+        if (sz <= 0 && sz != 0) continue;
+        double dx = sx - cx, dy = sy - cy;
+        double d2 = dx*dx + dy*dy;
+        if (d2 < bestDist) { bestDist = d2; bestUid = uid; }
+    }
+    if (bestUid == 0) { lua_pushnil(L); return 1; }
+    lua_pushinteger(L, bestUid);
     return 1;
 }
 
@@ -4359,6 +4590,7 @@ static void RegisterZelvexApi(lua_State* L) {
     lua_pushcfunction(L, LuaPlayersList);   lua_setfield(L, -2, "list");
     lua_pushcfunction(L, LuaPlayersCount);  lua_setfield(L, -2, "count");
     lua_pushcfunction(L, LuaPlayersNearest); lua_setfield(L, -2, "nearest");
+    lua_pushcfunction(L, LuaPlayersLooking); lua_setfield(L, -2, "looking");
     lua_setglobal(L, "Players");
 
     // Net.send(msgName, json)
@@ -4429,6 +4661,13 @@ static void RegisterZelvexApi(lua_State* L) {
     lua_pushcfunction(L, LuaEspScreen);
     lua_setfield(L, -2, "screen");
     lua_pop(L, 1);
+
+    // G.* - game-VM bridge (official dev-wiki API, client-friendly)
+    lua_newtable(L);
+    lua_pushcfunction(L, LuaGCall);  lua_setfield(L, -2, "call");
+    lua_pushcfunction(L, LuaGExec);  lua_setfield(L, -2, "exec");
+    lua_pushcfunction(L, LuaGReady); lua_setfield(L, -2, "ready");
+    lua_setglobal(L, "G");
 }
 
 // Run one script through the real Lua VM. Output goes to shared memory via

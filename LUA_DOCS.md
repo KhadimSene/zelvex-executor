@@ -91,7 +91,6 @@ local w = gui.window("My Menu")    -- returns a handle
 ```
 
 ### Widgets
-
 | Call | What it does |
 |---|---|
 | `gui.label(w, "text")` | plain text row |
@@ -213,7 +212,32 @@ if src then loadstring(src)() end
 
 ---
 
-## 6. ESP notes
+## 6. Game-VM bridge (official dev-wiki API)
+
+The game runs its own Lua VM (`liblua.dll`) hosting the documented
+Player/World/Actor/Chat/... tables
+(https://dev-wiki.mini1.cn — Player, World, Actor, Block, Item, Chat...).
+`G.*` calls into it from your scripts. Client-friendly: every failure
+returns `nil + message`, never crashes. Writes still obey host authority
+(as client you get reads + local effects; full power when you host).
+
+```lua
+local ok, detail = G.ready()
+print(ok, detail)   -- false + "VM not ready (join a map first)" in lobby
+
+G.call("Player", "getNickname", 0)     -- official API, any objid
+G.call("Player", "getAttr", 0, 2)      -- host HP, etc.
+G.call("Chat", "sendSystemMsg", "hi")  -- system message
+G.exec("return Player:getMainPlayerUin()")
+```
+
+Rules: module/func are strings; args are number/string/boolean/nil
+(max 8). One return value comes back. Use `G.ready()` first and
+`pcall` around hot paths — the game VM is single-threaded.
+
+---
+
+## 7. ESP notes
 
 - `Players.list()` + `gui.radar()` gives a rotating radar with team shapes.
 - `Esp.w2s(uid)` projects a player onto your screen - the numbers map to
@@ -221,7 +245,7 @@ if src then loadstring(src)() end
 
 ---
 
-## 7. Limits & tips
+## 8. Limits & tips
 
 - Script size cap: ~16 KB per run. Split big hubs into files loaded with
   `loadstring(http.get(...))()`.
