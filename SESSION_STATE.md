@@ -247,6 +247,12 @@ User wants (all requested across batches):
 - LUA_DOCS.md widget table expanded with all new calls + limits + no-flicker list example.
 - **Packaged 8/23 (29th)**: `ZelvexSetup-4.0.0.exe` 33 943 382 B, SHA256 `C1A71865B985E59BCFFFEB894CF57BDEA6E880D64A2A23180554942668B557A8`; dll SHA256 `9BF2C7E4E8B33140808960261EE4D83CB076D533DA90F144226AB6D63D377C00`. Builds clean.
 
+### Completed - Game-VM bridge G.* (8/23, "finish the VM bridge, client friendly")
+- Game ships custom Lua 5.1 (`game_dlls/liblua.dll`): NO `lua_pcall`/`lua_call`, but HAS `luaL_loadstring`+`lua_resume`+`lua_cpcall`. So bridge = `loadstring` + `resume`, no pcall needed.
+- `G.ready()` / `G.call("Player","getNickname",0)` / `G.exec("return ...")`: resolves `SandboxCoreLuaDirector::GetCoreLuaDirector` + `getLuaState` (3 name variants) via ResolveExport, all game-Lua fn pointers via GetProcAddress. Every failure -> nil+errmsg ("game VM not ready (join a map first)"), IsReadable guards, stack save/restore, string args escaped. Args: number/string/boolean/nil (max 8), one return value.
+- LUA_DOCS §6 (Game-VM bridge) + hub System-page "GAME VM CHECK" button. Committed 7b87439, pushed.
+- Max-client-power verdict given: host-gated ops can't be beaten client-side; client ceiling = own movement/attacks/inventory + G.* reads + host power when hosting.
+
 ### Completed - Redz-hub style UI overhaul (8/23, "script is horrible / boilerplate imgui")
 - User verdict: v5 widget showcase was ugly boilerplate; wants **redz Hub (Blox Fruits) layout**: dark rounded window, left sidebar pages, cards, toggle rows with descriptions + right-side switches, green accent buttons.
 - **DLL overlay rework (game_overlay.h/.cpp)**:
